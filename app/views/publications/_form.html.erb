@@ -1,0 +1,122 @@
+<!-- Formulario de New Property -->
+<div class="col-md-6">
+  <div class="row">
+    <div class="col-md-offset-2 col-md-9">
+      <%= form_for(publication, class:"form-horizontal") do |f| %>
+        <% if publication.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(publication.errors.count, "error") %> prohibited this publication from being saved:</h2>
+          <ul>
+            <% publication.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+        <% end %>
+        <!-- -->
+        <h3 class="subtitle-form-property text-center">Ingresa los datos de tu Propiedad</h3>
+        <br>
+        <!-- Form -->   
+        <div class="form-group">
+          <label for="category">Categoría</label>
+          <%= f.collection_select :category_id, @categories, :id, :name, {prompt: "Escoge una categoría"}, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <label for="type">Tipo</label>
+          <%= f.collection_select :type_id, @types, :id, :name, {prompt: "Escoge un tipo de inmueble"}, {class: 'form-control'} %>
+        </div>
+        <div class="form-group">
+          <label for="title">Título</label>
+          <%= f.text_field :title, class: 'form-control', placeholder: "Ej: Vendo casa en Vitacura" %>
+        </div>
+        <div class="form-group">
+          <label for="region">Región</label>
+          <%= f.collection_select :region_id, @regions, :id, :name, {}, {class: 'form-control'} %>
+        </div>
+        <div class="form-group">
+          <label for="commune">Comuna</label>
+          <%= f.collection_select :commune_id, @communes, :id, :name, {}, {class: 'form-control'} %>
+        </div>
+        <div class="form-group">
+          <label for="beedrom">Dormitorios</label>
+          <%= f.select(:bedroom, options_for_select([['1 Dormitorio', '1'], ['2 Dormitorios', '2'],['3 Dormitorios', '3'],['4 o más Dormitorios', '4']]),{},class: 'form-control') %>
+        </div>
+        <div class="form-group">
+          <label for="bath">Baños</label>
+          <%= f.select(:bath, options_for_select([['1 Baño', '1'], ['2 Baños', '2'],['3 Baños', '3'],['4 o más Baños', '4']]),{},class: 'form-control') %>
+        </div>
+        <div class="form-group">
+          <label for="parking">Estacionamiento</label>
+          <%= f.select(:parking, options_for_select([['1 Estacionamiento', '1'], ['2 Estacionamientos', '2'], ['3 Estacionamientos', '3'], ['4 o más Estacionamientos', '4']]),{},class: 'form-control') %>
+        </div>
+
+
+
+        <div class="form-group">
+          <label for="equipment">Equipamiento</label>
+          <%= f.text_field :equipment, class: 'form-control', placeholder: "Ej: Aire acondicionado - Piscina - Jardin"%>
+        </div>
+
+        <div class="form-group">
+          <label for="equipment">Equipamiento 2</label>
+          <%= collection_check_boxes(:publication, :equipments_ids, Equipment.all, :id, :name, 
+          checked: publication.equipments.map(&:id)) %>
+        </div>
+
+
+
+        <div class="form-group">
+          <label for="description">Descripción</label>
+          <%= f.text_area :description, class: 'form-control', placeholder: "Ej: Aire acondicionado - Piscina - Jardin"%>
+        </div>
+        <div class="form-group">
+          <label for="price">Precio</label>
+          <%= f.number_field :price, class: 'form-control', placeholder: "Ej: 3000 UF"%>
+        </div>
+        <div class="form-group actions">
+          <div class="row">
+            <div class="col-md-offset-2 col-md-3">
+              <%= link_to 'Volver', publications_path, class: 'btn btn-danger' %>
+            </div>
+            <div class="col-md-1">
+              <%= f.submit 'Crear Publicación', class: 'btn btn-success' %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<!-- Datos de Contacto -->
+<div class="col-md-6">
+  <div class="row">
+    <div class="col-md-offset-2 col-md-9">
+      <h3 class="subtitle-information-courses text-center">Datos de Contacto</h3>
+      <br>
+      <div>        
+        <img src="http://www.bluebridgewindowcleaning.co.uk/wp-content/uploads/2016/04/default-avatar.png" alt="Avatar" class="img-circle img-responsive">
+      </div>
+      <fieldset disabled>
+        <% if user_signed_in? %>
+          <div class="form-group">
+            <label for="Nombre">Nombre</label>
+            <input type="text" value="<%= current_user.name %>" class= "form-control">
+          </div>
+          <div class="form-group">
+            <label for="email">E-mail</label>
+            <input type="email" value="<%= current_user.email %>" class= "form-control">
+          </div>
+          <div class="form-group">
+            <label for="email">Celular</label>
+            <input type="email" value="<%= current_user.phone %>" class= "form-control">
+          </div>
+        <% end %>
+      </fieldset> 
+      <br>
+      <p class="text-information-form text-center">Dudas <i class="fa fa-question" aria-hidden="true"></i>   Escribe a <span class="bold">inscripciones@propiedades.com</span></p>
+    </div>
+  </div> 
+</div>
+
+

@@ -1,0 +1,46 @@
+// Place all the styles related to the Publications controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+// All-project
+
+.bold {
+  font-weight: bold;
+}
+
+hr.separator {
+  height: 1px; 
+  background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0)); 
+  border-color: darkgray;
+  max-width: 100%;
+}
+
+// Show-property
+
+.show-information {
+  font-size:22px;
+  text-align: center;
+}
+
+.show-description .show-group, p {
+  font-size: 20px;
+}
+
+// Glyphicons
+
+.price-usd {
+  color: green;
+}
+
+.map-commune {
+  color: #FF8C00;
+}
+
+.map-region {
+  color: #4169E1;
+}
+
+.text-center h2 {
+  font-size: 30px;
+}

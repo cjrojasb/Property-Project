@@ -1,0 +1,140 @@
+<p id="notice"><%= notice %></p>
+
+<%= link_to 'Edit', edit_publication_path(@publication) %> |
+<%= link_to 'Back', publications_path %>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Publication</title>
+</head>
+<body>
+  <div class="container">
+    <section class="show-property">
+      <%= link_to 'Volver a Avisos', publications_path %>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <p id="notice"><%= notice %></p>
+          <h2><%= @publication.title %></h2>
+          <hr class="separator">
+        </div>
+        <div class="row">
+          <div class="col-md-4 show-information">
+            <span class="glyphicon glyphicon-globe map-region"></span>
+            <%= @publication.region.name unless @publication.region_id.nil? %>
+          </div>
+          <div class="col-md-4 show-information">
+            <span class="glyphicon glyphicon-map-marker map-commune"></span>
+            <%= @publication.commune.name unless @publication.commune_id.nil? %>
+          </div>
+          <div class="col-md-4 show-information">
+            <span class="glyphicon glyphicon-usd price-usd"></span> <%= @publication.price %>
+          </div>
+        </div>
+      </div>
+      <br><br>
+      <div class="row">
+        <div class="col-md-7">
+          <div>        
+            <img src="https://cl.habcdn.com/photos/project/big/ampliacion-casa-alonso-de-camargo-5980-las-condes_41366.jpg" alt="Avatar" class= "img-thumbnail img-responsive">
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="show-group">
+            <p>
+              <span class="glyphicon glyphicon-usd usd"></span>
+              <strong>Categoría:</strong>
+              <%= @publication.category.name unless @publication.category_id.nil? %>
+            </p>
+          </div>
+          <div class="show-group">
+            <p>
+              <span class="glyphicon glyphicon-usd usd"></span>
+              <strong>Dormitorios:</strong>
+              <%= @publication.bedroom %>
+            </p>
+          </div>
+          <div class="show-group">
+            <p>
+              <span class="glyphicon glyphicon-usd usd"></span>
+              <strong>Baños:</strong>
+              <%= @publication.bath %>
+            </p>
+          </div>
+          <div class="show-group">
+            <p>
+              <span class="glyphicon glyphicon-usd usd"></span>
+              <strong>Estacionamiento:</strong>
+              <%= @publication.parking %>
+            </p>
+          </div>
+          <div class="show-group">
+            <p>
+              <span class="glyphicon glyphicon-usd usd"></span>
+              <strong>Equipamiento:</strong>
+              <%= @publication.equipment %>
+            </p>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-7">
+          <div class="show-description">
+            <p>
+              <strong>Description:</strong>
+              <%= @publication.description %>
+            </p>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="col-md-offset-2 col-md-9">
+            <h3 class="subtitle-information-courses text-center">Datos del Vendedor</h3>
+            <br>
+            <div>        
+              <img src="http://www.bluebridgewindowcleaning.co.uk/wp-content/uploads/2016/04/default-avatar.png" alt="Avatar" class="img-circle img-responsive">
+            </div>
+              <% if user_signed_in? %>
+                <div class="show-seller">
+                  <p class="text-center">
+                    <i class="glyphicon glyphicon-user" aria-hidden="true"></i> 
+                      Nombre: <span class="bold"><%= current_user.name %></span>
+                  </p>
+                </div>
+                <div class="show-seller">
+                  <p class="text-center">
+                    <i class="fa fa-envelope-o" aria-hidden="true"></i> 
+                      E-mail: <span class="bold"><%= current_user.email %></span>
+                  </p>
+                </div>
+                <div class="show-seller">
+                  <p class="text-center">
+                    <i class="glyphicon glyphicon-phone" aria-hidden="true"></i> 
+                      Celular: <span class="bold"><%= current_user.phone %></span>
+                  </p>
+                </div>
+              <% end %> 
+            <br>
+          </div>
+        </div>
+      </div>
+
+
+<br>
+
+        <%= link_to 'Edit', edit_publication_path(@publication) %> |
+      </div>
+    </section>
+  </div>
+</body>
+</html>
+
+
+
+
+
+
+

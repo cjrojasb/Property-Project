@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>New Publication</title>
+</head>
+<body>
+  <div class="container">
+    <section class="new-property">
+      <div class="col-md-12 text-center">
+        <h2>Nuevo Aviso</h2>
+        <br>
+      </div>
+      <!-- Formulario de New Property -->
+      <%= render 'form', publication: @publication %>
+
+      <!-- Datos de Contacto -->
+      <%# render 'form', publication: @publication %>
+
+      <%= link_to 'Back', publications_path %>
+    </section>
+  </div>
+</body>
+</html>
+
+
+
+
+
+
+

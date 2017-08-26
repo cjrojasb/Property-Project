@@ -1,0 +1,94 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Publications</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Bedroom</th>
+      <th>Bath</th>
+      <th>Parking</th>
+      <th>Equipment</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Comuna</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @publications.each do |publication| %>
+      <tr>
+        <td><%= publication.title %></td>
+        <td><%= publication.bedroom %></td>
+        <td><%= publication.bath %></td>
+        <td><%= publication.parking %></td>
+        <td><%= publication.equipment %></td>
+        <td><%= publication.description %></td>
+        <td><%= publication.price %></td>
+        <td><%= publication.commune.name unless publication.commune.nil? %></td> 
+        <td><%= link_to 'Show', publication %></td>
+        <td><%= link_to 'Edit', edit_publication_path(publication) %></td>
+        <td><%= link_to 'Destroy', publication, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Publication', new_publication_path %>
+
+<br>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Publications</title>
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h2>Avisos de Inmuebles</h2>
+      </div>
+    </div>
+    <div class="row">
+      <% @publications.each do |publication| %>
+      <div class="col-md-3">
+      <br>
+        <div class="thumbnail">
+          <%= link_to (image_tag 'http://www.propiedadestu.cl/wp-content/uploads/2014/07/01_pre_v.png'), publication %>
+          <div class="caption text-center">
+            <h3><%= publication.title %></h3>
+            <hr class= "separator">
+            <div class="show-index-publications">
+              <p>
+                <i class="glyphicon glyphicon-globe map-region" aria-hidden="true"></i>
+                <%= publication.region.name %>
+              </p>
+            </div>
+            <div class="show-index-publications">
+              <p>
+                <i class="glyphicon glyphicon-map-marker map-commune" aria-hidden="true"></i>
+                <%= publication.commune.name %>
+              </p>
+            </div>
+            <div class="show-index-publications">
+              <p>
+                <i class="glyphicon glyphicon-usd price-usd"" aria-hidden="true"></i>
+                <span class="bold"><%= publication.price %></span>
+              </p>
+            </div>
+          </div>      
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</body>
+</html>
+
