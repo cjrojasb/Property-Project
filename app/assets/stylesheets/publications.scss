@@ -16,6 +16,10 @@ hr.separator {
   max-width: 100%;
 }
 
+.img-ico {
+  width: 40px;
+}
+
 // Show-property
 
 .show-information {
@@ -23,7 +27,7 @@ hr.separator {
   text-align: center;
 }
 
-.show-description .show-group, p {
+.show-description .show-group, p, li {
   font-size: 20px;
 }
 
@@ -43,4 +47,8 @@ hr.separator {
 
 .text-center h2 {
   font-size: 30px;
+}
+
+.text-description {
+  text-align: justify;
 }

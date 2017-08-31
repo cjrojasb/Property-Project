@@ -10,4 +10,7 @@ class Publication < ApplicationRecord
 
   attr_accessor :equipments_ids
 
+  #Validaciones
+  validates :title, presence: {message_: "Título es requerido" }
+  validates :description, presence: {message: "Descripción es requerida"}
 end

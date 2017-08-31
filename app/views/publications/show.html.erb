@@ -45,37 +45,43 @@
         <div class="col-md-5">
           <div class="show-group">
             <p>
-              <span class="glyphicon glyphicon-usd usd"></span>
-              <strong>Categoría:</strong>
-              <%= @publication.category.name unless @publication.category_id.nil? %>
+              <%= image_tag 'house-ico.png', class: 'img-ico' %>
+              <strong>Tipo de Inmueble:</strong>
+              <%= @publication.type.name unless @publication.type_id.nil? %>
             </p>
           </div>
           <div class="show-group">
             <p>
-              <span class="glyphicon glyphicon-usd usd"></span>
+              <%= image_tag 'bedroom-ico.png', class: 'img-ico' %>
               <strong>Dormitorios:</strong>
               <%= @publication.bedroom %>
             </p>
           </div>
           <div class="show-group">
             <p>
-              <span class="glyphicon glyphicon-usd usd"></span>
+              <%= image_tag 'bath-ico.png', class: 'img-ico' %> 
               <strong>Baños:</strong>
               <%= @publication.bath %>
             </p>
           </div>
           <div class="show-group">
             <p>
-              <span class="glyphicon glyphicon-usd usd"></span>
-              <strong>Estacionamiento:</strong>
+              <%= image_tag 'parking-ico.png', class: 'img-ico' %>
+              <strong>Estacionamientos:</strong>
               <%= @publication.parking %>
             </p>
           </div>
           <div class="show-group">
             <p>
-              <span class="glyphicon glyphicon-usd usd"></span>
+              <%= image_tag 'equipment-ico.png', class: 'img-ico' %>
               <strong>Equipamiento:</strong>
-              <%= @publication.equipment %>
+              <td>
+                <ul>
+                  <% @publication.equipments.each do |eq|%>
+                  <li><%= eq.name %></li>
+                  <% end %> 
+                </ul>
+              </td>
             </p>
           </div>
         </div>
@@ -83,11 +89,9 @@
       <br>
       <div class="row">
         <div class="col-md-7">
-          <div class="show-description">
-            <p>
-              <strong>Description:</strong>
-              <%= @publication.description %>
-            </p>
+          <div class="show-description text-description">
+            <p><strong>Descripción:</strong></p>
+            <p><%= @publication.description %></p>
           </div>
         </div>
         <div class="col-md-5">
@@ -97,38 +101,38 @@
             <div>        
               <img src="http://www.bluebridgewindowcleaning.co.uk/wp-content/uploads/2016/04/default-avatar.png" alt="Avatar" class="img-circle img-responsive">
             </div>
-              <% if user_signed_in? %>
-                <div class="show-seller">
-                  <p class="text-center">
-                    <i class="glyphicon glyphicon-user" aria-hidden="true"></i> 
-                      Nombre: <span class="bold"><%= current_user.name %></span>
-                  </p>
-                </div>
-                <div class="show-seller">
-                  <p class="text-center">
-                    <i class="fa fa-envelope-o" aria-hidden="true"></i> 
-                      E-mail: <span class="bold"><%= current_user.email %></span>
-                  </p>
-                </div>
-                <div class="show-seller">
-                  <p class="text-center">
-                    <i class="glyphicon glyphicon-phone" aria-hidden="true"></i> 
-                      Celular: <span class="bold"><%= current_user.phone %></span>
-                  </p>
-                </div>
-              <% end %> 
+            <% if user_signed_in? %>
+            <div class="show-seller">
+              <p class="text-center">
+                <i class="glyphicon glyphicon-user" aria-hidden="true"></i> 
+                Nombre: <span class="bold"><%= current_user.name %></span>
+              </p>
+            </div>
+            <div class="show-seller">
+              <p class="text-center">
+                <i class="fa fa-envelope-o" aria-hidden="true"></i> 
+                E-mail: <span class="bold"><%= current_user.email %></span>
+              </p>
+            </div>
+            <div class="show-seller">
+              <p class="text-center">
+                <i class="glyphicon glyphicon-phone" aria-hidden="true"></i> 
+                Celular: <span class="bold"><%= current_user.phone %></span>
+              </p>
+            </div>
+            <% end %> 
             <br>
           </div>
         </div>
       </div>
 
 
-<br>
+      <br>
 
-        <%= link_to 'Edit', edit_publication_path(@publication) %> |
-      </div>
-    </section>
-  </div>
+      <%= link_to 'Edit', edit_publication_path(@publication) %> |
+    </div>
+  </section>
+</div>
 </body>
 </html>
 

@@ -1,26 +1,21 @@
 class PublicationsController < ApplicationController
   before_action :set_publication, only: [:show, :edit, :update, :destroy]
+  before_action :set_all, only: [:index, :show, :new, :edit, :create]
 
   # GET /publications
   # GET /publications.json
   def index
     @publications = Publication.all
-    @communes = Commune.all
   end
 
   # GET /publications/1
   # GET /publications/1.json
   def show
-    @communes = Commune.all
   end
 
   # GET /publications/new
   def new
     @publication = Publication.new
-    @categories = Category.all
-    @types = Type.all
-    @communes = Commune.all
-    @regions = Region.all
   end
 
   # GET /publications/1/edit
@@ -30,16 +25,9 @@ class PublicationsController < ApplicationController
   # POST /publications
   # POST /publications.json
   def create
-
-
-
-
-
     @publication = Publication.new(publication_params)
-
-    @publication.user = current_user
     equipments_ids = publication_params[:equipments_ids].delete_if{ |x| x.empty? }
-    @equipment = Equipment.find(equipments_ids)
+    @equipments = Equipment.find(equipments_ids)
     @publication.equipments << @equipments
 
     #@publication.user = current_user if user_signed_in? -> Soluciona el error 'user must exist' al crear una nueva publicacion
@@ -79,6 +67,14 @@ class PublicationsController < ApplicationController
   end
 
   private
+
+    def set_all
+      @categories = Category.all
+      @types = Type.all
+      @communes = Commune.all
+      @regions = Region.all
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_publication
       @publication = Publication.find(params[:id])
@@ -86,6 +82,6 @@ class PublicationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def publication_params
-      params.require(:publication).permit(:title, :bedroom, :bath, :parking, :equipment, :description, :price, :category_id, :type_id, :region_id, :commune_id, equipments_ids: [])
+      params.require(:publication).permit(:title, :bedroom, :bath, :parking, :description, :price, :category_id, :type_id, :region_id, :commune_id, equipments_ids: [])
     end
 end

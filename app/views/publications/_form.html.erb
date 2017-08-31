@@ -4,8 +4,10 @@
     <div class="col-md-offset-2 col-md-9">
       <%= form_for(publication, class:"form-horizontal") do |f| %>
         <% if publication.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(publication.errors.count, "error") %> prohibited this publication from being saved:</h2>
+        <div class="alert alert-danger text-center">
+          <%# pluralize(publication.errors.count, "error") %>
+          <h3><strong>Oh No!</strong></h3>
+          <p>Ha ocurrido un error</p>
           <ul>
             <% publication.errors.full_messages.each do |message| %>
             <li><%= message %></li>
@@ -28,6 +30,13 @@
         <div class="form-group">
           <label for="title">Título</label>
           <%= f.text_field :title, class: 'form-control', placeholder: "Ej: Vendo casa en Vitacura" %>
+        <% if publication.errors[:title].any? %>
+          <span class="label label-danger">
+            <% publication.errors[:title].each do |message| %>
+              <%= message %>
+            <% end %>
+          </span>
+        <% end %>
         </div>
         <div class="form-group">
           <label for="region">Región</label>
@@ -49,22 +58,14 @@
           <label for="parking">Estacionamiento</label>
           <%= f.select(:parking, options_for_select([['1 Estacionamiento', '1'], ['2 Estacionamientos', '2'], ['3 Estacionamientos', '3'], ['4 o más Estacionamientos', '4']]),{},class: 'form-control') %>
         </div>
-
-
-
         <div class="form-group">
-          <label for="equipment">Equipamiento</label>
-          <%= f.text_field :equipment, class: 'form-control', placeholder: "Ej: Aire acondicionado - Piscina - Jardin"%>
-        </div>
-
-        <div class="form-group">
-          <label for="equipment">Equipamiento 2</label>
-          <%= collection_check_boxes(:publication, :equipments_ids, Equipment.all, :id, :name, 
-          checked: publication.equipments.map(&:id)) %>
-        </div>
-
-
-
+           <%= f.label :equipments_ids, "Equipamiento" %>
+            <div class="row">
+              <%= collection_check_boxes(:publication, :equipments_ids, Equipment.all, :id, :name, checked: publication.equipments.map(&:id)) do |b|%> 
+                <div class="col-md-6">  <%= b.label { b.check_box + b.text } %></div>
+              <% end %>
+            </div>
+         </div>
         <div class="form-group">
           <label for="description">Descripción</label>
           <%= f.text_area :description, class: 'form-control', placeholder: "Ej: Aire acondicionado - Piscina - Jardin"%>
@@ -73,6 +74,22 @@
           <label for="price">Precio</label>
           <%= f.number_field :price, class: 'form-control', placeholder: "Ej: 3000 UF"%>
         </div>
+
+        <!--
+        <div class="form-group">
+          <%# @publication.categories.each do |cat| %>
+            <%# if cat.name == 'Arrendar' %>
+              <label for="price">Precio Mensual</label>
+              <%# f.number_field :price, class: 'form-control', placeholder: "Ej: 3000 UF"%>
+            <%# end %>
+            <%# if cat.name == 'Vender' %>
+              <label for="price">Precio en Milllones</label>
+              <%# f.number_field :price, class: 'form-control', placeholder: "Ej: 3000 UF"%>
+            <%# end %>
+          <%# end %>
+         </div>
+         -->
+ 
         <div class="form-group actions">
           <div class="row">
             <div class="col-md-offset-2 col-md-3">

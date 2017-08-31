@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170825224900) do
+ActiveRecord::Schema.define(version: 20170829204748) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20170825224900) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "region_id"
+    t.string   "province"
     t.index ["region_id"], name: "index_communes_on_region_id", using: :btree
   end
 
@@ -49,7 +50,6 @@ ActiveRecord::Schema.define(version: 20170825224900) do
     t.integer  "bedroom"
     t.integer  "bath"
     t.integer  "parking"
-    t.string   "equipment"
     t.text     "description"
     t.integer  "price"
     t.datetime "created_at",  null: false
