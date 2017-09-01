@@ -1,4 +1,6 @@
 class Publication < ApplicationRecord
+  mount_uploader :photo, PhotoUploader
+  
   belongs_to :user, optional: true
   belongs_to :commune, optional: true
   belongs_to :region, optional: true

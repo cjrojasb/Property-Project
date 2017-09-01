@@ -2,7 +2,7 @@
 <div class="col-md-6">
   <div class="row">
     <div class="col-md-offset-2 col-md-9">
-      <%= form_for(publication, class:"form-horizontal") do |f| %>
+      <%= form_for(publication, html: { multipart: true, class:"form-horizontal" }) do |f| %>
         <% if publication.errors.any? %>
         <div class="alert alert-danger text-center">
           <%# pluralize(publication.errors.count, "error") %>
@@ -45,6 +45,12 @@
         <div class="form-group">
           <label for="commune">Comuna</label>
           <%= f.collection_select :commune_id, @communes, :id, :name, {}, {class: 'form-control'} %>
+        </div>
+        <div class="form-group">
+          <label for="commune">Foto</label>
+          <%= f.file_field :photo %>
+          <%= f.hidden_field :photo_cache %>
+          <%= image_tag(@publication.photo) if @publication.photo? %>
         </div>
         <div class="form-group">
           <label for="beedrom">Dormitorios</label>

@@ -13,6 +13,8 @@ gem 'cancancan'
 gem 'rails', '~> 5.0.5'
 # Gem Carrierwave
 gem 'carrierwave'
+# Gem MiniMagick
+gem 'mini_magick'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
 # Use Puma as the app server

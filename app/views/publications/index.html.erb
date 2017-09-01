@@ -61,7 +61,7 @@
       <div class="col-md-3">
       <br>
         <div class="thumbnail">
-          <%= link_to (image_tag 'http://www.propiedadestu.cl/wp-content/uploads/2014/07/01_pre_v.png'), publication %>
+          <%= link_to (image_tag(publication.photo.thumb, class: 'img-thumbnail')), publication %>
           <div class="caption text-center">
             <h3><%= publication.title %></h3>
             <hr class= "separator">

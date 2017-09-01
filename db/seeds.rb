@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+
+PropertyEquipment.destroy_all
 Publication.destroy_all
 Category.destroy_all
 Type.destroy_all
@@ -26,9 +28,6 @@ Type.create([{name: 'Casa'}, {name: 'Cabaña'}, {name: 'Departamento'}, {name: '
 
 Equipment.create([{name: 'Baño Visitas'}, {name: 'Servicios'}, {name: 'Terraza'}, {name: 'Logia'}, {name: 'Cocina Amoblada'}, 
   {name: 'Cocina Americana'}, {name: 'Gimnasio'}, {name: 'Calefacción'}, {name: 'Bodega'}, {name: 'Aire Acondicionado'}, {name: 'Conserjería'}])
-
-
-
 
 
  
