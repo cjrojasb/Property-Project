@@ -8,17 +8,22 @@
 <body>
   <div class="container">
     <section class="new-property">
-      <div class="col-md-12 text-center">
-        <h2>Nuevo Aviso</h2>
-        <br>
+    <div class="row">
+      <div class="class col-md-2 col-md-offset-1">
+        <%= link_to 'Volver a Avisos', publications_path, class: 'label label-primary' %>
+      </div>
+    </div>  
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h2>Nuevo Aviso</h2>
+          <br>
+        </div>
       </div>
       <!-- Formulario de New Property -->
       <%= render 'form', publication: @publication %>
 
       <!-- Datos de Contacto -->
       <%# render 'form', publication: @publication %>
-
-      <%= link_to 'Back', publications_path %>
     </section>
   </div>
 </body>

@@ -20,15 +20,15 @@
         <br>
         <!-- Form -->   
         <div class="form-group">
-          <label for="category">Categoría</label>
+          <%= label :category, "Categoría" %>
           <%= f.collection_select :category_id, @categories, :id, :name, {prompt: "Escoge una categoría"}, class: 'form-control' %>
         </div>
         <div class="form-group">
-          <label for="type">Tipo</label>
+          <%= label :type, "Tipo de Inmueble" %>
           <%= f.collection_select :type_id, @types, :id, :name, {prompt: "Escoge un tipo de inmueble"}, {class: 'form-control'} %>
         </div>
         <div class="form-group">
-          <label for="title">Título</label>
+          <%= label :title, "Título" %>
           <%= f.text_field :title, class: 'form-control', placeholder: "Ej: Vendo casa en Vitacura" %>
         <% if publication.errors[:title].any? %>
           <span class="label label-danger">
@@ -39,45 +39,54 @@
         <% end %>
         </div>
         <div class="form-group">
-          <label for="region">Región</label>
-          <%= f.collection_select :region_id, @regions, :id, :name, {}, {class: 'form-control'} %>
+          <%= f.label :region_id, "Región" %>
+          <%= f.collection_select :region_id, @regions, :id, :name, {prompt: "Selecciona una Región"}, {class: 'form-control'} %>
         </div>
+        <div class="form-group" id="communes">
+          <%= f.label :commune_id, "Comuna" %>
+          <%= f.grouped_collection_select :commune_id, Region.order(:name), :communes, :name, :id, :name, {}, {class: 'form-control'} %>
+        </div>  
+
+        <!--
         <div class="form-group">
           <label for="commune">Comuna</label>
-          <%= f.collection_select :commune_id, @communes, :id, :name, {}, {class: 'form-control'} %>
+          <%# f.collection_select :commune_id, @communes, :id, :name, {}, {class: 'form-control'} %>
         </div>
+        -->
+ 
         <div class="form-group">
-          <label for="commune">Foto</label>
+          <%= label :photo, "Imágen" %>
           <%= f.file_field :photo %>
           <%= f.hidden_field :photo_cache %>
           <%= image_tag(@publication.photo) if @publication.photo? %>
         </div>
         <div class="form-group">
-          <label for="beedrom">Dormitorios</label>
+          <%= label :bedroom, "Dormitorios" %>
           <%= f.select(:bedroom, options_for_select([['1 Dormitorio', '1'], ['2 Dormitorios', '2'],['3 Dormitorios', '3'],['4 o más Dormitorios', '4']]),{},class: 'form-control') %>
         </div>
         <div class="form-group">
-          <label for="bath">Baños</label>
+          <%= label :bath, "Baños" %>
           <%= f.select(:bath, options_for_select([['1 Baño', '1'], ['2 Baños', '2'],['3 Baños', '3'],['4 o más Baños', '4']]),{},class: 'form-control') %>
         </div>
         <div class="form-group">
-          <label for="parking">Estacionamiento</label>
+          <%= label :parking, "Estacionamientos" %>
           <%= f.select(:parking, options_for_select([['1 Estacionamiento', '1'], ['2 Estacionamientos', '2'], ['3 Estacionamientos', '3'], ['4 o más Estacionamientos', '4']]),{},class: 'form-control') %>
         </div>
         <div class="form-group">
-           <%= f.label :equipments_ids, "Equipamiento" %>
+           <%= label :equipments_ids, "Equipamiento" %>
             <div class="row">
-              <%= collection_check_boxes(:publication, :equipments_ids, Equipment.all, :id, :name, checked: publication.equipments.map(&:id)) do |b|%> 
-                <div class="col-md-6">  <%= b.label { b.check_box + b.text } %></div>
+                <%= collection_check_boxes(:publication, :equipments_ids, Equipment.all, :id, :name, 
+                checked: publication.equipments.map(&:id)) do |equipment| %>
+                <div class="col-md-6">  <%= equipment.label { equipment.check_box + equipment.text } %></div>
               <% end %>
             </div>
          </div>
         <div class="form-group">
-          <label for="description">Descripción</label>
+          <%= label :description, "Descripción" %>
           <%= f.text_area :description, class: 'form-control', placeholder: "Ej: Aire acondicionado - Piscina - Jardin"%>
         </div>
         <div class="form-group">
-          <label for="price">Precio</label>
+          <%= label :price, "Precio" %>
           <%= f.number_field :price, class: 'form-control', placeholder: "Ej: 3000 UF"%>
         </div>
 

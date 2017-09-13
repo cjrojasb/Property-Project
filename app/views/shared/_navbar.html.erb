@@ -29,19 +29,73 @@
           <a class="page-scroll" href="#contact">Contact</a>
         </li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= user_signed_in? ? current_user.name : "Entrar" %> <span class="caret"></span></a>
-          <ul class="dropdown-menu">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%# user_signed_in? ? current_user.name : "Entrar" %> 
             <% if user_signed_in? %>
-              <li><a href="<%= destroy_user_session_path %>" data-method='delete'>Salir</a></li>
+            <%= image_tag(current_user.avatar, class: 'img-profile img-circle') %>   
+            <%= current_user.name %>
             <% else %>
+            <strong>Entrar</strong>
+            <% end %>
+            <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <% if user_signed_in? %>
+              <li><a href="<%= pages_account_path %>">Mi Cuenta <i class="fa fa-user" aria-hidden="true"></i></a></li>
+              <li><a href="<%= edit_user_registration_path %>">Editar <i class="fa fa-wrench" aria-hidden="true"></i></a></li>
+              <li class="divider"></li>
+              <li><a href="<%= destroy_user_session_path %>" data-method='delete'>Cerrar Sesión <i class="fa fa-power-off" aria-hidden="true"></i></a></li>
+              <% else %>
               <li><a href="<%= new_user_session_path %>">Ingresar</a></li>
               <li><a href="<%= new_user_registration_path %>">Registrarse</a></li>
+              <% end %>
+            </ul>
+          </li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <% if user_signed_in? %>
+              <strong>Bienvenido, <I class="glyphicon glyphicon-user"></I></strong>
+              <%= current_user.name %>
+            <% else %>
+              <strong>Entrar</strong>
             <% end %>
+            <span class="caret"></span>
+            <ul class="dropdown-menu">
+              <% if user_signed_in? %>
+              <li>
+                <div class="navbar-login">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <%= image_tag(current_user.avatar, class: 'img-circle img-size') %>
+                    </div>
+                    <div class="col-md-8 text-center">
+                      <strong><%= current_user.name %></strong>
+                      <strong><%= current_user.phone %></strong>
+                      <strong><%= current_user.email %></strong>
+                      <%= link_to edit_user_registration_path, class: 'btn btn-primary btn-block btn-sm' do %>
+                      <i class="fa fa-wrench"></i> Actualizar Datos
+                      <% end %> 
+                    </div>                    
+                  </div>
+                </div>
+              </li>
+              <li class="divider"></li>
+              <div class="navbar-login">
+                <div class="row">
+                  <div class="col-md-12">
+                    <p><%= link_to destroy_user_session_path, method: :delete, class: 'btn btn-danger btn-block' do %>
+                      <i class="fa fa-power-off"></i> Cerrar Sesión<% end %></p>
+                  </div>
+                </div>
+                <% else %>
+                  <li><a href="<%= new_user_session_path %>">Ingresar</a></li>
+                  <li><a href="<%= new_user_registration_path %>">Registrarse</a></li>
+              </div>
+              <% end %>
+            </ul>
+          </li>
           </ul>
-        </li>
-      </ul>
-    </div>
-    <!-- /.navbar-collapse -->
-  </div>
-  <!-- /.container-fluid -->
-</nav>
+        </div>
+        <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container-fluid -->
+    </nav>

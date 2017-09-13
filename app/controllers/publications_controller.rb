@@ -5,7 +5,19 @@ class PublicationsController < ApplicationController
   # GET /publications
   # GET /publications.json
   def index
+
+
     @publications = Publication.all
+
+    if params[:search_title].present?
+      @publications = Publication.where("title ilike ? OR description ilike ?", "%#{params[:search_title]}%", 
+        "%#{params[:search_title]}%")
+     elsif params[:search_type].present? || params[:search_region].present? || params[:search_commune].present?
+      @publications = Publication.where(type_id: params[:search_type], region_id: params[:search_region], 
+        commune_id: params[:search_commune])
+    else
+      @publications = Publication.all
+    end
   end
 
   # GET /publications/1

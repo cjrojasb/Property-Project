@@ -5,8 +5,10 @@ Rails.application.routes.draw do
   }
 
   get 'pages/index'
+  
+  get 'pages/account'
 
-  resources :publications
+  resources :publications 
 
   root 'pages#index'
 

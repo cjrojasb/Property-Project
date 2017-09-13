@@ -7,6 +7,7 @@ end
 
 # Gem Devise
 gem "devise", git: 'https://github.com/plataformatec/devise.git'
+gem 'devise-bootstrap-views'
 # Gem CanCanCan
 gem 'cancancan'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

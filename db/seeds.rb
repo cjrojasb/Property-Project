@@ -112,10 +112,10 @@ Region.create(name: "Región de Aysén del General Carlos Ibáñez del Campo")
 Region.create(name: "Región de Magallanes y de la Antártica Chilena")
 
 # Commune
-Commune.create(name: "Arica", province: "Arica", region: Region.find_by(name: "Arica y Parinacota"))
-Commune.create(name: "Camarones", province: "Arica", region: Region.find_by(name: "Arica y Parinacota"))
-Commune.create(name: "Putre", province: "Parinacota", region: Region.find_by(name: "Arica y Parinacota"))
-Commune.create(name: "General Lagos", province: "Parinacota", region: Region.find_by(name: "Arica y Parinacota"))
+Commune.create(name: "Arica", province: "Arica", region: Region.find_by(name: "Región de Arica y Parinacota"))
+Commune.create(name: "Camarones", province: "Arica", region: Region.find_by(name: "Región de Arica y Parinacota"))
+Commune.create(name: "Putre", province: "Parinacota", region: Region.find_by(name: "Región de Arica y Parinacota"))
+Commune.create(name: "General Lagos", province: "Parinacota", region: Region.find_by(name: "Región de Arica y Parinacota"))
 Commune.create(name: "Iquique", province: "Iquique", region: Region.find_by(name: "Región de Tarapacá"))
 Commune.create(name: "Alto Hospicio", province: "Iquique", region: Region.find_by(name: "Región de Tarapacá"))
 Commune.create(name: "Pozo Almonte", province: "Tamarugal", region: Region.find_by(name: "Región de Tarapacá"))
@@ -473,10 +473,10 @@ Commune.create(name: "Peñaflor", province: "Talagante", region: Region.find_by(
 
 
 
-#Commune.create(name: "Arica", province: "Arica", region_id: Region.find_by(name: "Arica y Parinacota").id)
-#Commune.create(name: "Camarones", province: "Arica", region_id: Region.find_by(name: "Arica y Parinacota").id)
-#Commune.create(name: "Putre", province: "Parinacota", region_id: Region.find_by(name: "Arica y Parinacota").id)
-#Commune.create(name: "General Lagos", province: "Parinacota", region_id: Region.find_by(name: "Arica y Parinacota").id)
+#Commune.create(name: "Arica", province: "Arica", region_id: Region.find_by(name: "Región de Arica y Parinacota").id)
+#Commune.create(name: "Camarones", province: "Arica", region_id: Region.find_by(name: "Región de Arica y Parinacota").id)
+#Commune.create(name: "Putre", province: "Parinacota", region_id: Region.find_by(name: "Región de Arica y Parinacota").id)
+#Commune.create(name: "General Lagos", province: "Parinacota", region_id: Region.find_by(name: "Región de Arica y Parinacota").id)
 #Commune.create(name: "Iquique", province: "Iquique", region_id: Region.find_by(name: "Región de Tarapacá").id)
 #Commune.create(name: "Alto Hospicio", province: "Iquique", region_id: Region.find_by(name: "Región de Tarapacá").id)
 #Commune.create(name: "Pozo Almonte", province: "Tamarugal", region_id: Region.find_by(name: "Región de Tarapacá").id)

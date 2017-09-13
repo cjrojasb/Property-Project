@@ -18,3 +18,23 @@
 //= require jquery.magnific-popup
 //= require creative
 //= require_tree .
+
+
+$(document).on('turbolinks:load',function(){
+  $('#communes').hide();
+  var communes;
+  communes = $('#publication_commune_id').html();
+  return $('#publication_region_id').change(function() {
+    var escaped_region, options, region;
+    region = $('#publication_region_id :selected').text();
+    escaped_region = region.replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
+    options = $(communes).filter("optgroup[label='" + escaped_region + "']").html();
+    if (options) {
+      $('#publication_commune_id').html(options);
+      return $('#communes').show();
+    } else {
+      $('#publication_commune_id').empty();
+      return $('#communes').hide();
+    }
+  });
+});
