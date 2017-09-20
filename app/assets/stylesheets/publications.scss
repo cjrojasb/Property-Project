@@ -24,6 +24,14 @@ hr.separator {
   width: 30px;
 }
 
+.img-profile-account {
+  width: 100px;
+}
+
+.img-property-account {
+  width: 150px;
+}
+
 .img-profile-show {
   width: 130px;
 }
@@ -38,6 +46,15 @@ hr.separator {
 .img-size
 {
   width: 100px;
+}
+
+// Devise Bootstrap
+
+.vertical-center {
+  min-height: 100%; 
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
 }
 
 // Show-property

@@ -1,47 +1,64 @@
-<%= bootstrap_devise_error_messages! %>
-<div class="panel panel-default devise-bs">
-  <div class="panel-heading">
-    <h4><%= t('.sign_up', default: 'Sign up') %></h4>
-  </div>
-  <div class="panel-body">
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { role: 'form' }) do |f| %>
-
-      <div class="form-group">
-        <%= f.label :name %>
-        <%= f.text_field :name, autofocus: true, class: 'form-control' %>
+<br>
+<br>
+<br>
+<div class="vertical-center"">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3"> 
+          <div class="panel panel-default devise-bs">
+            <div class="panel-heading text-center">
+              <h4><strong>Registrarse</strong></h4>
+            </div>
+          <div class="panel-body">
+          <%= bootstrap_devise_error_messages! %>
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { role: 'form', class: 'form-horizontal' }) do |f| %>
+            <div class="form-group">
+              <%= f.label :name, "Nombre", class: "col-sm-3 control-label" %>
+              <div class="col-sm-8">
+                <%= f.text_field :name, autofocus: true, placeholder: "Ingresa tu Nombre", class: 'form-control' %>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= f.label :phone, "Celular", class: "col-sm-3 control-label" %>
+              <div class="col-sm-8">
+                <%= f.text_field :phone, placeholder: "Ej: 984623989", class: 'form-control' %>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= f.label :avatar, "Perfil", class: "col-sm-3 control-label" %>
+              <div class="col-sm-8">
+                <%= f.file_field :avatar %>
+                <%= f.hidden_field :avatar_cache %>
+                <% if user_signed_in? %>
+                  <%= image_tag(current_user.avatar) if current_user.avatar? %>
+                <% end %>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= f.label :email, "E-mail", class: "col-sm-3 control-label" %>
+              <div class="col-sm-8">
+                <%= f.email_field :email, placeholder: "Ingresa tu E-mail", class: 'form-control' %>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= f.label :password, "Contraseña", class: "col-sm-3 control-label" %>
+              <div class="col-sm-8">
+                <%= f.password_field :password, placeholder: "Ingresa tu Contraseña", class: 'form-control' %>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= f.label :password_confirmation, "Confirmar Contraseña", class: "col-sm-3 control-label" %>
+              <div class="col-sm-8">
+                <%= f.password_field :password_confirmation, placeholder: "Confirma tu Contraseña", class: 'form-control' %>
+              </div>
+            </div>
+              <%= f.submit "Registrarse", class: 'btn btn-primary btn-sm col-sm-offset-1' %>
+            <% end %>
+            <hr class="separator">
+            <%= render 'devise/shared/links' %>
+          </div>
+        </div>
       </div>
-
-      <div class="form-group">
-        <%= f.label :phone %>
-        <%= f.text_field :phone, class: 'form-control' %>
-      </div>
-
-      <div class="form-group">
-        <%= label :avatar, "Perfil" %>
-        <%= f.file_field :avatar %>
-        <%= f.hidden_field :avatar_cache %>
-        <% if user_signed_in? %>
-          <%= image_tag(current_user.avatar) if current_user.avatar? %>
-        <% end %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :email %>
-        <%= f.email_field :email, class: 'form-control' %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :password %>
-        <%= f.password_field :password, class: 'form-control' %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :password_confirmation %>
-        <%= f.password_field :password_confirmation, class: 'form-control' %>
-      </div>
-
-      <%= f.submit t('.sign_up', default: 'Sign up'), class: 'btn btn-primary' %>
-    <% end %>
+    </div>
   </div>
 </div>
-<%= render 'devise/shared/links' %>

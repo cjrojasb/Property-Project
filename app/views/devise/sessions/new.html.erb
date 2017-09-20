@@ -1,26 +1,37 @@
-<div class="panel panel-default devise-bs">
-  <div class="panel-heading">
-    <h4><%= t('.sign_in', default: 'Sign in') %></h4>
-  </div>
-  <div class="panel-body">
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: 'form' }) do |f| %>
-      <div class="form-group">
-        <%= f.label :email %>
-        <%= f.email_field :email, autofocus: true, class: 'form-control' %>
-      </div>
-      <div class="form-group">
-        <%= f.label :password %>
-        <%= f.password_field :password, autocomplete: 'off', class: 'form-control' %>
-      </div>
-      <% if devise_mapping.rememberable? %>
-        <div class="checkbox">
-          <%= f.label :remember_me do %>
-            <%= f.check_box :remember_me %> <%= t('.remember_me', default: 'Remember me') %>
-          <% end %>
+<div class="vertical-center"">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3"> 
+          <div class="panel panel-default devise-bs">
+            <div class="panel-heading text-center">
+              <h4><strong>Ingresar</strong></h4>
+            </div>
+          <div class="panel-body">
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: 'form' }) do |f| %>
+              <div class="form-group">
+                <%= f.label :email, "E-mail" %>
+                <%= f.email_field :email, autofocus: true, class: 'form-control' %>
+              </div>
+              <div class="form-group">
+                <%= f.label :password, "Contraseña" %>
+                <%= f.password_field :password, autocomplete: 'off', class: 'form-control' %>
+              </div>
+              <% if devise_mapping.rememberable? %>
+                <div class="checkbox">
+                  <%= f.label :remember_me do %>
+                    <%= f.check_box :remember_me %> <%= t('.remember_me', default: 'Recúerdame') %>
+                  <% end %>
+                </div>
+              <% end %>
+              <%= f.submit "Iniciar Sesión", class: 'btn btn-primary btn-sm' %>
+            <% end %>
+            <hr class="separator">
+            <%= render 'devise/shared/links' %>
+          </div>
         </div>
-      <% end %>
-      <%= f.submit  t('.sign_in', default: 'Sign in'), class: 'btn btn-primary' %>
-    <% end %>
+      </div>
+    </div>
   </div>
 </div>
-<%= render 'devise/shared/links' %>
+
+

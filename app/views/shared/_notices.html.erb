@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-md-12">
+    <h4>Actualmente tienes: 4 avisos</h4>
+    <br>
+    <div class="table-responsive">
+      <table class="table table-bordred">
+       <thead>
+         <th class="text-center">Aviso</th>
+         <th class="text-center">Descripción</th>
+         <th class="text-center">Precio</th>
+         <th class="text-center">Administrar</th>
+       </thead>
+       <% @publications.each do |publication| %>
+       <tbody>
+        <tr>
+          <td class="text-center"><%= link_to (image_tag(publication.photo.thumb, class: 'img-property-account img-thumbnail')), publication %></td>
+          <td class="text-justify">
+            <p><%= publication.title %></p>
+            <p><%= publication.created_at.strftime("%d de %B") %></p>
+            <p><%= publication.commune.name %></p>
+          </td>
+          <td class="text-center">
+            <p><%= publication.price %></p>
+          </td>
+          <td class="text-center">
+            <%= link_to publication, class: 'btn btn-info btn-sm' do %>
+              <span class="fa fa-eye"></span>
+            <% end %>
+            <%= link_to edit_publication_path(publication), class: 'btn btn-primary btn-sm' do %>
+              <span class="fa fa-pencil"></span>
+            <% end %>
+            <%= link_to publication, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' do %>
+                <span class="glyphicon glyphicon-trash"></span>
+            <% end %>
+          </td>
+        </tr>
+       </tbody>
+      <% end %>
+      </table>
+    </div>
+ </div>
+</div>

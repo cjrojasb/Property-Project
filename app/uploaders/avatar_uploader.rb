@@ -15,7 +15,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
   end
 
   def default_url
-    "default.png"
+    "default-user.png"
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
@@ -29,7 +29,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # Process files as they are uploaded:
   # process scale: [200, 300]
   #process resize_to_fit: [652, 439]
-  process resize_to_limit: [652, 400]
+  process resize_to_limit: [400, 300]
   #
   # def scale(width, height)
   #   # do something
@@ -37,7 +37,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   version :thumb do
-    process resize_to_limit: [nil, 235]
+    process resize_to_limit: [180, 200]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
