@@ -19,19 +19,19 @@
 
   <tbody>
     <% @publications.each do |publication| %>
-      <tr>
-        <td><%= publication.title %></td>
-        <td><%= publication.bedroom %></td>
-        <td><%= publication.bath %></td>
-        <td><%= publication.parking %></td>
-        <td><%= publication.equipments.name %></td>
-        <td><%= publication.description %></td>
-        <td><%= publication.price %></td>
-        <td><%= publication.commune.name unless publication.commune.nil? %></td> 
-        <td><%= link_to 'Show', publication %></td>
-        <td><%= link_to 'Edit', edit_publication_path(publication) %></td>
-        <td><%= link_to 'Destroy', publication, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <tr>
+      <td><%= publication.title %></td>
+      <td><%= publication.bedroom %></td>
+      <td><%= publication.bath %></td>
+      <td><%= publication.parking %></td>
+      <td><%= publication.equipments.name %></td>
+      <td><%= publication.description %></td>
+      <td><%= publication.price %></td>
+      <td><%= publication.commune.name unless publication.commune.nil? %></td> 
+      <td><%= link_to 'Show', publication %></td>
+      <td><%= link_to 'Edit', edit_publication_path(publication) %></td>
+      <td><%= link_to 'Destroy', publication, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
     <% end %>
   </tbody>
 </table>
@@ -54,14 +54,14 @@
     <div class="row">
       <div class="col-md-12 text-center">
         <h2>Avisos de Inmuebles</h2>
+        <br>
       </div>
     </div>
     <div class="row">
       <div class="col-md-3">
-      <%= form_tag(publications_path, method: :get, class:"form-horizontal") do %>
-        <br>
+        <%= form_tag(publications_path, method: :get, class:"form") do %>
         <div class="well">
-        <h3 class="text-center">Buscador</h3>
+          <h3 class="text-center">Buscador</h3>
           <div class="form-group">
             <%= label :title, "Buscar por palabra clave" %>
             <%= text_field_tag :search_title, nil, placeholder: 'Ej: Casa en Santiago, departamento', class: "form-control" %>
@@ -70,93 +70,150 @@
             <%= label :type, "Tipo de Inmueble" %>
             <%= select_tag :search_type, options_from_collection_for_select(@types, :id, :name), prompt: "Escoge un tipo de inmueble", class: 'form-control' %>
           </div>
+
+
           <div class="form-group">
             <%= label :region, "Región" %>
-            <%= select_tag :search_region, options_from_collection_for_select(@regions, :id, :name), prompt: "Selecciona la Región", class: 'form-control' %>
+            <%= select_tag :search_region, options_from_collection_for_select(@regions, :id, :name), prompt: "SSelecciona una Región", class: 'form-control' %>
           </div>
           <div class="form-group">
             <%= label :commune, "Comuna" %>
             <%= select_tag :search_commune, options_from_collection_for_select(@communes, :id, :name), prompt: "Selecciona la Comuna", class: 'form-control' %>
           </div>
-          <!--
           <div class="form-group">
-
-          <label for="type">Dormitorios</label>
+            <%= label :bedroom, "Dormitorios" %>
             <div class="row">
               <div class="col-md-6">
-                <%# publication.select(:bedroom, options_for_select([['1 Dormitorio', '1'], ['2 Dormitorios', '2'],['3 Dormitorios', '3'],['4 o más Dormitorios', '4']]),{},class: 'form-control') %>
+                <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-minus-circle" aria-hidden="true"></i>
+                  </div>
+                  <%= select_tag :bedroom_min, options_for_select([['1 Dormitorio', '1'], ['2 Dormitorios', '2'],['3 Dormitorios', '3'],['4 o más Dormitorios', '4']]),class: 'form-control', include_blank: true %>  
+                </div>
               </div>
               <div class="col-md-6">
-                <%# publication.select(:bedroom, options_for_select([['1 Dormitorio', '1'], ['2 Dormitorios', '2'],['3 Dormitorios', '3'],['4 o más Dormitorios', '4']]),{},class: 'form-control') %>
+                <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                  </div>
+                  <%= select_tag :bedroom_max, options_for_select([['1 Dormitorio', '1'], ['2 Dormitorios', '2'],['3 Dormitorios', '3'],['4 o más Dormitorios', '4']]),class: 'form-control', include_blank: true %>  
+                </div>
               </div>
             </div>
           </div>
-          -->
-          <!--
           <div class="form-group">
-            <label for="pricefrom" class="control-label">Min Price</label>
-            <div class="input-group">
-              <div class="input-group-addon" id="basic-addon1"><i class="fa fa-minus-circle" aria-hidden="true"></i></div>
-              <input type="text" class="form-control" id="pricefrom" aria-describedby="basic-addon1">
+            <%= label :bath, "Baños" %>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-minus-circle" aria-hidden="true"></i>
+                  </div>
+                  <%= select_tag :bath_min, options_for_select([['1 Baño', '1'], ['2 Baños', '2'],['3 Baños', '3'],['4 o más Baños', '4']]),class: 'form-control', include_blank: true %>  
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                  </div>
+                  <%= select_tag :bath_max, options_for_select([['1 Baño', '1'], ['2 Baños', '2'],['3 Baños', '3'],['4 o más Baños', '4']]),class: 'form-control', include_blank: true %>  
+                </div>
+              </div>
             </div>
           </div>
           <div class="form-group">
-            <label for="priceto" class="control-label">Max Price</label>
-            <div class="input-group">
-              <div class="input-group-addon" id="basic-addon2">$</div>
-              <input type="text" class="form-control" id="priceto" aria-describedby="basic-addon1">
+            <%= label :parking, "Estacionamientos" %>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-minus-circle" aria-hidden="true"></i>
+                  </div>
+                  <%= select_tag :parking_min, options_for_select([['1 Estacionamiento', '1'], ['2 Estacionamientos', '2'],['3 Estacionamientos', '3'],['4 o más Estacionamientos', '4']]),class: 'form-control', include_blank: true %>  
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                  </div>
+                  <%= select_tag :parking_max, options_for_select([['1 Estacionamiento', '1'], ['2 Estacionamientos', '2'],['3 Estacionamientos', '3'],['4 o más Estacionamientos', '4']]),class: 'form-control', include_blank: true %>  
+                </div>
+              </div>
             </div>
           </div>
-          -->
+          <br>
           <div class="form-group">
-           <span class="input-group-btn">
-               <%= button_tag(type: "submit", class: "btn btn-primary btn-sm btn-block") do %>
-                   <span class="glyphicon glyphicon-search"></span> Buscar
-               <% end %>
+            <div class="row">
+              <div class="col-md-6">
+                <span class="input-group-btn">
+                  <%= link_to publications_path, class: "btn btn-warning btn-sm btn-block" do %>
+                  <span class="glyphicon glyphicon-filter"></span> Limpiar
+                  <% end %>
+                </span>
+              </div>
+              <div class="col-md-6">
+                <span class="input-group-btn">
+                  <%= button_tag(type: "submit", class: "btn btn-primary btn-sm btn-block") do %>
+                  <span class="glyphicon glyphicon-search"></span> Buscar
+                  <% end %>
+                </span>
+              </div>
+            </div>
+            <br>
+              
+            <!--
+            <span class="input-group-btn">
+             <%# button_tag(type: "submit", class: "btn btn-primary btn-sm btn-block") do %>
+             <span class="glyphicon glyphicon-search"></span> Buscar
+             <# end %>
+             <%# link_to "Limpiar Filtros", publications_path, class: "btn btn-primary btn-sm btn-block" %>
            </span>
+            -->
+         </div>
+       </div>
+       <% end %>
+     </div>
+
+     <% @publications.each do |publication| %>
+     <div class="col-md-3">
+      <div class="thumbnail">
+        <%= link_to (image_tag(publication.photo.thumb, class: 'img-thumbnail')), publication %>
+        <div class="caption text-center">
+          <h4><%= publication.title %></h4>
+          <hr class= "separator">
+          <div class="show-index-publications">
+            <i class="glyphicon glyphicon-globe map-region" aria-hidden="true"></i>
+            <%= publication.region.name %>
           </div>
-        </div>
-        <% end %>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="show-index-publications">
+                <i class="glyphicon glyphicon-map-marker map-commune" aria-hidden="true"></i>
+                <%= publication.commune.name %>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="show-index-publications">
+                <i class="glyphicon glyphicon-map-marker map-commune" aria-hidden="true"></i>
+                <%= publication.type.name unless publication.type.nil? %>
+              </div>
+            </div>
+          </div>
+          <div class="show-index-publications">
+            <p>
+              <i class="glyphicon glyphicon-usd price-usd" aria-hidden="true"></i>
+              <span class="bold"><%= publication.price %></span>
+            </p>
+          </div>
+        </div>      
       </div>
-      
-      <% @publications.each do |publication| %>
-      <div class="col-md-3">
       <br>
-        <div class="thumbnail">
-          <%= link_to (image_tag(publication.photo.thumb, class: 'img-thumbnail')), publication %>
-          <div class="caption text-center">
-            <h4><%= publication.title %></h4>
-            <hr class= "separator">
-            <div class="show-index-publications">
-              <i class="glyphicon glyphicon-globe map-region" aria-hidden="true"></i>
-              <%= publication.region.name %>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="show-index-publications">
-                  <i class="glyphicon glyphicon-map-marker map-commune" aria-hidden="true"></i>
-                  <%= publication.commune.name %>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="show-index-publications">
-                  <i class="glyphicon glyphicon-map-marker map-commune" aria-hidden="true"></i>
-                  <%= publication.type.name unless publication.type.nil? %>
-                </div>
-              </div>
-            </div>
-            <div class="show-index-publications">
-              <p>
-                <i class="glyphicon glyphicon-usd price-usd"" aria-hidden="true"></i>
-                <span class="bold"><%= publication.price %></span>
-              </p>
-            </div>
-          </div>      
-        </div>
-      </div>
-      <% end %>
     </div>
+    <% end %>
   </div>
+</div>
 </body>
 </html>
 

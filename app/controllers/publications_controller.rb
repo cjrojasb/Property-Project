@@ -6,18 +6,59 @@ class PublicationsController < ApplicationController
   # GET /publications.json
   def index
 
-
     @publications = Publication.all
 
+    #if params[:search_title].present?
+    #  @publications = Publication.where("title ilike ? OR description ilike ?", "%#{params[:search_title]}%", 
+    #    "%#{params[:search_title]}%")
+    # elsif params[:search_type].present? || params[:search_region].present? || params[:search_commune].present?
+    #  @publications = Publication.where(type_id: params[:search_type], region_id: params[:search_region], 
+    #    commune_id: params[:search_commune])
+    #else
+    #  @publications = Publication.all
+    #end
+
     if params[:search_title].present?
-      @publications = Publication.where("title ilike ? OR description ilike ?", "%#{params[:search_title]}%", 
+      @publications = @publications.where("title ilike ? OR description ilike ?", "%#{params[:search_title]}%", 
         "%#{params[:search_title]}%")
-     elsif params[:search_type].present? || params[:search_region].present? || params[:search_commune].present?
-      @publications = Publication.where(type_id: params[:search_type], region_id: params[:search_region], 
-        commune_id: params[:search_commune])
-    else
-      @publications = Publication.all
     end
+
+    if params[:search_type].present? 
+      @publications = @publications.where(type_id: params[:search_type])
+    end
+
+    if params[:search_region].present?
+       @publications = @publications.where(region_id: params[:search_region])
+    end
+
+    if params[:search_commune].present?
+       @publications = @publications.where(commune_id: params[:search_commune])
+    end
+
+    if params[:bedroom_min].present?
+      @publications = @publications.where("bedroom >= ?", params[:bedroom_min])
+    end
+
+    if params[:bedroom_max].present?
+      @publications = @publications.where("bedroom <= ?", params[:bedroom_max])
+    end
+
+    if params[:bath_min].present?
+      @publications = @publications.where("bath >= ?", params[:bath_min])
+    end
+
+    if params[:bath_max].present?
+      @publications = @publications.where("bath <= ?", params[:bath_max])
+    end
+
+    if params[:parking_min].present?
+      @publications = @publications.where("parking >= ?", params[:parking_min])
+    end
+
+    if params[:parking_max].present?
+      @publications = @publications.where("parking <= ?", params[:parking_max])
+    end
+    
   end
 
   # GET /publications/1
@@ -37,7 +78,7 @@ class PublicationsController < ApplicationController
   # POST /publications
   # POST /publications.json
   def create
-    @publication = Publication.new(publication_params)
+    @publication = current_user.publications.new(publication_params)
     equipments_ids = publication_params[:equipments_ids].delete_if{ |x| x.empty? }
     @equipments = Equipment.find(equipments_ids)
     @publication.equipments << @equipments
@@ -83,8 +124,8 @@ class PublicationsController < ApplicationController
     def set_all
       @categories = Category.all
       @types = Type.all
-      @communes = Commune.all
       @regions = Region.all
+      @communes = Commune.all
     end
 
     # Use callbacks to share common setup or constraints between actions.
@@ -94,6 +135,6 @@ class PublicationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def publication_params
-      params.require(:publication).permit(:title, :bedroom, :bath, :parking, :description, :price, :category_id, :type_id, :region_id, :commune_id, :photo, :photo_cache, equipments_ids: [])
+      params.require(:publication).permit(:user_id, :title, :bedroom, :bath, :parking, :description, :price, :category_id, :type_id, :region_id, :commune_id, :photo, :photo_cache, equipments_ids: [])
     end
 end

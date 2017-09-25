@@ -5,11 +5,7 @@ class PagesController < ApplicationController
   end
 
   def account
-    @publications = Publication.all
-    @categories = Category.all
-    @types = Type.all
-    @communes = Commune.all
-    @regions = Region.all
+    @publications = current_user.publications.all
   end
 
   end

@@ -24,23 +24,14 @@ hr.separator {
   width: 30px;
 }
 
-.img-profile-account {
-  width: 100px;
-}
-
-.img-property-account {
-  width: 150px;
-}
-
 .img-profile-show {
-  width: 130px;
+  width: 120px;
 }
 
-.navbar-login
-{
-    width: 305px;
-    padding: 10px;
-    padding-bottom: 0px;
+.navbar-login {
+  width: 305px;
+  padding: 10px;
+  padding-bottom: 0px;
 }
 
 .img-size
@@ -59,6 +50,10 @@ hr.separator {
 
 // Show-property
 
+.title-show {
+  margin-top: 60px;
+}
+
 .show-information {
   font-size:22px;
   text-align: center;
@@ -66,6 +61,13 @@ hr.separator {
 
 .show-description .show-group, p, li {
   font-size: 20px;
+}
+
+.show-seller span {
+  margin-top: 10px;
+  font-size: 19px;
+  line-height: 40px;
+  display: block;
 }
 
 // Glyphicons
@@ -94,4 +96,14 @@ hr.separator {
 
 .show-index-publications {
   font-size: 15px;
+}
+
+// My Account
+
+.img-profile-account {
+  width: 100px;
+}
+
+.img-property-account {
+  width: 150px;
 }

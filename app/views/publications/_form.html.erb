@@ -16,9 +16,11 @@
         </div>
         <% end %>
         <!-- -->
+        <%  %>
         <h3 class="subtitle-form-property text-center">Ingresa los datos de tu Propiedad</h3>
         <br>
         <!-- Form -->   
+        <%# f.hidden_field :user_id, :value => current_user.id %>
         <div class="form-group">
           <%= label :category, "Categoría" %>
           <%= f.collection_select :category_id, @categories, :id, :name, {prompt: "Escoge una categoría"}, class: 'form-control' %>
@@ -46,14 +48,6 @@
           <%= f.label :commune_id, "Comuna" %>
           <%= f.grouped_collection_select :commune_id, Region.order(:name), :communes, :name, :id, :name, {}, {class: 'form-control'} %>
         </div>  
-
-        <!--
-        <div class="form-group">
-          <label for="commune">Comuna</label>
-          <%# f.collection_select :commune_id, @communes, :id, :name, {}, {class: 'form-control'} %>
-        </div>
-        -->
- 
         <div class="form-group">
           <%= label :photo, "Imágen" %>
           <%= f.file_field :photo %>

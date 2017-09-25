@@ -9,6 +9,7 @@
 
 PropertyEquipment.destroy_all
 Publication.destroy_all
+User.destroy_all
 Category.destroy_all
 Type.destroy_all
 Equipment.destroy_all
