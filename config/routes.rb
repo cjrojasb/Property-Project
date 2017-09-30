@@ -4,11 +4,13 @@ Rails.application.routes.draw do
     registrations: 'users/registrations' # rails g devise:controllers users
   }
 
-  get 'pages/index'
-  
   get 'pages/account'
 
+  get 'pages/index'
+
   resources :publications 
+  
+  #resources :pages
 
   root 'pages#index'
 

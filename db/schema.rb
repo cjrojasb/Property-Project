@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170912035737) do
+ActiveRecord::Schema.define(version: 20170928011417) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,14 @@ ActiveRecord::Schema.define(version: 20170912035737) do
     t.index ["publication_id"], name: "index_property_equipments_on_publication_id", using: :btree
   end
 
+  create_table "publication_attachments", force: :cascade do |t|
+    t.string   "photo"
+    t.integer  "publication_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["publication_id"], name: "index_publication_attachments_on_publication_id", using: :btree
+  end
+
   create_table "publications", force: :cascade do |t|
     t.string   "title"
     t.integer  "bedroom"
@@ -52,14 +60,15 @@ ActiveRecord::Schema.define(version: 20170912035737) do
     t.integer  "parking"
     t.text     "description"
     t.integer  "price"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.integer  "user_id"
     t.integer  "commune_id"
     t.integer  "category_id"
     t.integer  "type_id"
     t.integer  "region_id"
     t.string   "photo"
+    t.integer  "page_views",  default: 0
     t.index ["category_id"], name: "index_publications_on_category_id", using: :btree
     t.index ["commune_id"], name: "index_publications_on_commune_id", using: :btree
     t.index ["region_id"], name: "index_publications_on_region_id", using: :btree
@@ -103,6 +112,7 @@ ActiveRecord::Schema.define(version: 20170912035737) do
   add_foreign_key "communes", "regions"
   add_foreign_key "property_equipments", "equipment"
   add_foreign_key "property_equipments", "publications"
+  add_foreign_key "publication_attachments", "publications"
   add_foreign_key "publications", "categories"
   add_foreign_key "publications", "communes"
   add_foreign_key "publications", "regions"

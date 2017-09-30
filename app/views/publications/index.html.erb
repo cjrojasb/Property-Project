@@ -70,8 +70,6 @@
             <%= label :type, "Tipo de Inmueble" %>
             <%= select_tag :search_type, options_from_collection_for_select(@types, :id, :name), prompt: "Escoge un tipo de inmueble", class: 'form-control' %>
           </div>
-
-
           <div class="form-group">
             <%= label :region, "Región" %>
             <%= select_tag :search_region, options_from_collection_for_select(@regions, :id, :name), prompt: "SSelecciona una Región", class: 'form-control' %>
@@ -179,13 +177,13 @@
      <% @publications.each do |publication| %>
      <div class="col-md-3">
       <div class="thumbnail">
-        <%= link_to (image_tag(publication.photo.thumb, class: 'img-thumbnail')), publication %>
+        <%= link_to (image_tag(publication.publication_attachments.first.photo.thumb, class: 'img-thumbnail')), publication unless publication.publication_attachments.empty? %>
         <div class="caption text-center">
           <h4><%= publication.title %></h4>
           <hr class= "separator">
           <div class="show-index-publications">
             <i class="glyphicon glyphicon-globe map-region" aria-hidden="true"></i>
-            <%= publication.region.name %>
+            <%= publication.region.name if publication.region_id %>
           </div>
           <div class="row">
             <div class="col-md-6">
@@ -205,6 +203,10 @@
             <p>
               <i class="glyphicon glyphicon-usd price-usd" aria-hidden="true"></i>
               <span class="bold"><%= publication.price %></span>
+              <br>
+
+              <br>
+
             </p>
           </div>
         </div>      

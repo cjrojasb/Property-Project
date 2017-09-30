@@ -1,6 +1,9 @@
 class PublicationsController < ApplicationController
   before_action :set_publication, only: [:show, :edit, :update, :destroy]
   before_action :set_all, only: [:index, :show, :new, :edit, :create]
+  
+  #load_and_authorize_resource class:PagesController
+
 
   # GET /publications
   # GET /publications.json
@@ -64,11 +67,15 @@ class PublicationsController < ApplicationController
   # GET /publications/1
   # GET /publications/1.json
   def show
+    @publication.page_views += 1
+    @publication.save
+    @publication_attachments = @publication.publication_attachments.all
   end
 
   # GET /publications/new
   def new
     @publication = Publication.new
+    @publication_attachment = @publication.publication_attachments.build
   end
 
   # GET /publications/1/edit
@@ -86,6 +93,9 @@ class PublicationsController < ApplicationController
     #@publication.user = current_user if user_signed_in? -> Soluciona el error 'user must exist' al crear una nueva publicacion
     respond_to do |format|
       if @publication.save
+        params[:publication_attachments]['photo'].each do |a|
+           @publication_attachment = @publication.publication_attachments.create!(:photo => a)
+        end
         format.html { redirect_to @publication, notice: 'Publication was successfully created.' }
         format.json { render :show, status: :created, location: @publication }
       else
@@ -121,7 +131,7 @@ class PublicationsController < ApplicationController
 
   private
 
-    def set_all
+     def set_all
       @categories = Category.all
       @types = Type.all
       @regions = Region.all
@@ -135,6 +145,6 @@ class PublicationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def publication_params
-      params.require(:publication).permit(:user_id, :title, :bedroom, :bath, :parking, :description, :price, :category_id, :type_id, :region_id, :commune_id, :photo, :photo_cache, equipments_ids: [])
+      params.require(:publication).permit(:user_id, :title, :bedroom, :bath, :parking, :description, :price, :category_id, :type_id, :region_id, :commune_id, :photo, :photo_cache, equipments_ids: [], publication_attachments_attributes: [:id, :publication_id, :photo])
     end
 end
