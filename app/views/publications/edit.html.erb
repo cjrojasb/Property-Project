@@ -1,6 +1,37 @@
-<h1>Editing Publication</h1>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Editing Publication</title>
+</head>
+<body>
+  <div class="container">
+    <section class="new-property">
+    <div class="row">
+      <div class="class col-md-2 col-md-offset-1">
+        <%= link_to 'Volver a Avisos', publications_path, class: 'label label-primary' %>
+      </div>
+    </div>  
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h2>Editar Aviso</h2>
+          <br>
+        </div>
+      </div>
+      <!-- Formulario de New Property -->
+      <%= render 'form', publication: @publication %>
 
-<%= render 'form', publication: @publication %>
+      <!-- Datos de Contacto -->
+      <%# render 'form', publication: @publication %>
+    </section>
+  </div>
+</body>
+</html>
 
-<%= link_to 'Show', @publication %> |
-<%= link_to 'Back', publications_path %>
+
+
+
+
+
+

@@ -48,24 +48,19 @@
           <%= f.label :commune_id, "Comuna" %>
           <%= f.grouped_collection_select :commune_id, Region.order(:name), :communes, :name, :id, :name, {}, {class: 'form-control'} %>
         </div>
-
-        <!--  
+        <!--
         <div class="form-group">
-          <%= label :photo, "Imágen" %>
-          <%= f.file_field :photo %>
+          <%# label :photo, "Imágen" %>
+          <%# f.file_field :photo %>
           <%# f.hidden_field :photo_cache %>
-          <%= image_tag(@publication.photo) if @publication.photo? %>
+          <%# image_tag(@publication.photo) if @publication.photo? %>
         </div>
-        -->
+       -->
 
         <div class="form-group">
           <%= f.fields_for :publication_attachments do |p| %>
             <%= p.label :photo, "Imágenes" %>
-            <%= p.file_field :photo, name: "publication_attachments[photo][]" %>
-            <%= p.file_field :photo, name: "publication_attachments[photo][]" %>
-            <%= p.file_field :photo, name: "publication_attachments[photo][]" %>
-            <%= p.file_field :photo, name: "publication_attachments[photo][]" %>
-            <%= p.file_field :photo, name: "publication_attachments[photo][]" %>
+            <%= p.file_field :photo, multiple: true, name: "publication_attachments[photo][]" %>
           <% end %>
         </div>
 
@@ -132,12 +127,14 @@
 <!-- Datos de Contacto -->
 <div class="col-md-6">
   <div class="row">
-    <div class="col-md-offset-2 col-md-9">
+    <div class="col-md-offset-2 col-md-8">
       <h3 class="subtitle-information-courses text-center">Datos de Contacto</h3>
       <br>
-      <div>        
-        <img src="http://www.bluebridgewindowcleaning.co.uk/wp-content/uploads/2016/04/default-avatar.png" alt="Avatar" class="img-circle img-responsive">
-      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <%= image_tag(current_user.avatar, class: 'img-circle img-responsive') %>       
+        </div>
+        </div>
       <fieldset disabled>
         <% if user_signed_in? %>
           <div class="form-group">
@@ -154,8 +151,6 @@
           </div>
         <% end %>
       </fieldset> 
-      <br>
-      <p class="text-information-form text-center">Dudas <i class="fa fa-question" aria-hidden="true"></i>   Escribe a <span class="bold">inscripciones@propiedades.com</span></p>
     </div>
   </div> 
 </div>

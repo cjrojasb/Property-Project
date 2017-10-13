@@ -51,15 +51,16 @@
         </div>
         <div class="row">
           <div class="col-md-4 show-information">
-            <span class="glyphicon glyphicon-globe map-region"></span>
+            <%= image_tag 'ubication.png', class: 'img-ico-show' %>
             <%= @publication.region.name unless @publication.region_id.nil? %>
           </div>
           <div class="col-md-4 show-information">
-            <span class="glyphicon glyphicon-map-marker map-commune"></span>
+            <%= image_tag 'location.png', class: 'img-ico-show' %>
             <%= @publication.commune.name unless @publication.commune_id.nil? %>
           </div>
           <div class="col-md-4 show-information">
-            <span class="glyphicon glyphicon-usd price-usd"></span> <%= @publication.price %>
+            <%= image_tag 'dollar.png', class: 'img-ico-show-dollar' %>
+            <strong><%= @publication.price unless @publication.price.nil? %></strong>
           </div>
         </div>
       </div>
@@ -74,30 +75,20 @@
                 <li data-target="#carousel-example-generic" data-slide-to="1"></li>
                 <li data-target="#carousel-example-generic" data-slide-to="2"></li>
               </ol>
-
               <!-- Wrapper for slides -->
               <div class="carousel-inner" role="listbox">
                 <% @publication_attachments.each_with_index do |element, index| %>
                   <% if index == 0 %>
                     <div class="item active">
                       <%= image_tag element.photo %>
-                      <div class="carousel-caption">
-                        ...
-                      </div>
                     </div>
                   <% else %>
                     <div class="item">
                       <%= image_tag element.photo %>
-                      <div class="carousel-caption">
-                        ...
-                      </div>
                     </div> 
-                  <% end %>
-                                    
-                <% end %>  
-                
+                  <% end %>                    
+                <% end %>    
               </div>
-
               <!-- Controls -->
               <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
                 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -107,8 +98,7 @@
                 <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
               </a>
-            </div>
-              
+            </div>            
           </div>
         </div>
         <div class="col-md-5">
@@ -193,11 +183,6 @@
           </div>
         </div>
       </div>
-
-
-      <br>
-
-      <%= link_to 'Edit', edit_publication_path(@publication) %> |
     </div>
   </section>
 </div>
