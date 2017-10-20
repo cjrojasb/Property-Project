@@ -16,8 +16,16 @@ hr.separator {
   max-width: 100%;
 }
 
+hr.separator-show {
+  height: 1px; 
+  background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0)); 
+  border-color: darkgray;
+  max-width: 100%;
+  margin-bottom: 10px;
+}
+
 .img-ico {
-  width: 40px;
+  width: 35px;
 }
 
 .img-ico-index {
@@ -44,12 +52,34 @@ hr.separator {
   margin-bottom: 7px;
 }
 
+///////////////
+
+.img-ico-show-photo {
+  width: 20px;
+  margin: 1px;
+  margin-bottom: 7px;
+}
+
+.img-ico-show-dollar-photo {
+  width: 22px;
+  margin: 1px;
+  margin-bottom: 7px;
+}
+
 .img-profile {
   width: 30px;
 }
 
 .img-profile-show {
   width: 120px;
+}
+
+/////////////
+
+.img-profile-show-photo {
+  margin-left: -6px;
+  margin-top: 18px;
+  width: 80px;
 }
 
 .navbar-login {
@@ -91,6 +121,15 @@ hr.separator {
 
 // Show-property
 
+.text-show-property {
+  font-size: 17px;
+}
+
+.text-show-photo {
+  font-weight: bold;
+  font-size: 15px;
+}
+
 .title-show {
   margin-top: 60px;
 }
@@ -109,6 +148,14 @@ hr.separator {
   font-size: 19px;
   line-height: 40px;
   display: block;
+}
+
+.map-google {
+  width: 100%; 
+  height: 300px;
+  border: 1px;
+  border-style: solid;
+  border-color: blackf;
 }
 
 // Glyphicons

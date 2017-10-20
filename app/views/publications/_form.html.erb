@@ -41,6 +41,10 @@
         <% end %>
         </div>
         <div class="form-group">
+          <%= label :address, "Dirección" %>
+          <%= f.text_field :address, class: 'form-control', placeholder: "Ej: Av. Simón Bolívar, 3765, Región Metropolitana"%>
+        </div>
+        <div class="form-group">
           <%= f.label :region_id, "Región" %>
           <%= f.collection_select :region_id, @regions, :id, :name, {prompt: "Selecciona una Región"}, {class: 'form-control'} %>
         </div>

@@ -23,15 +23,14 @@ Category.create([{name: 'Arrendar'}, {name: 'Vender'}])
 Type.create([{name: 'Casa'}, {name: 'Cabaña'}, {name: 'Departamento'}, {name: 'Oficina'}, {name: 'Terreno'}])
 
 # Equipment - All
-#Equipment.create([{name: 'Terraza'}, {name: 'Quincho'}, {name: 'Cocina Americana'}, {name: 'Bodega'}, {name: 'Piscina'}, 
-#  {name: 'Aire Acondicionado'}, {name: 'Gimnasio'}, {name: 'Calefacción'}])
+Equipment.create([{name: 'Terraza'}, {name: 'Quincho'}, {name: 'Cocina Americana'}, 
+{name: 'Bodega'}, {name: 'Piscina'}, {name: 'Aire Acondicionado'}, {name: 'Gimnasio'}, 
+{name: 'Calefacción'}, {name: 'Logia'}])
+
+#Equipment.create([{name: 'Baño Visitas'}, {name: 'Servicios'}, {name: 'Terraza'}, {name: 'Logia'}, {name: 'Cocina Amoblada'}, 
+#  {name: 'Cocina Americana'}, {name: 'Gimnasio'}, {name: 'Calefacción'}, {name: 'Bodega'}, {name: 'Aire Acondicionado'}, {name: 'Conserjería'}])
 
 
-Equipment.create([{name: 'Baño Visitas'}, {name: 'Servicios'}, {name: 'Terraza'}, {name: 'Logia'}, {name: 'Cocina Amoblada'}, 
-  {name: 'Cocina Americana'}, {name: 'Gimnasio'}, {name: 'Calefacción'}, {name: 'Bodega'}, {name: 'Aire Acondicionado'}, {name: 'Conserjería'}])
-
-
- 
 # Departmento#
 
 #Espacios#
