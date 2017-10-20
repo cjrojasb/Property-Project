@@ -21,33 +21,6 @@
             <p id="notice"><%= notice %></p>
             <h2><%= @publication.title %></h2>
           </div>
-          <div class="col-md-5">
-            <div class="col-md-12">
-              <h3 class="subtitle text-center">Datos del Vendedor</h3>
-              <span><%# @publication.increment %></span>
-              <hr class="separator">
-              <div class="col-md-9">
-                <div class="show-seller">
-                  <span>
-                    <i class="glyphicon glyphicon-user" aria-hidden="true"></i> 
-                    <%= @publication.user.name %>
-                  </span>
-                  <span>
-                    <i class="fa fa-envelope-o bold" aria-hidden="true"></i> 
-                    <%= @publication.user.email %>
-                  </span>
-                  <span>
-                    <i class="glyphicon glyphicon-phone bold" aria-hidden="true"></i> 
-                    <%= @publication.user.phone %>
-                  </span>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <%= image_tag(@publication.user.avatar, class: 'img-profile-show') %>
-              </div>
-            </div>
-          </div>
-
         </div>
 
         <!--
@@ -116,24 +89,22 @@
                     <p class="text-show-photo"><%= image_tag 'dollar.png', class: 'img-ico-show-dollar-photo' %>
                     <%= @publication.price unless @publication.price.nil? %></p>
                   </div>
-                  <div class="col-md-7">
-                    <div class="col-md-8">
-                      <p class="text-show-photo"><%= image_tag 'user.png', class: 'img-ico-show-dollar-photo' %>
-                        <%= @publication.user.name %></p>
-                      <p class="text-show-photo"><%= image_tag 'email.png', class: 'img-ico-show-dollar-photo' %>
-                        <%= @publication.user.email %></p>
-                      <p class="text-show-photo"><%= image_tag 'cell.png', class: 'img-ico-show-dollar-photo' %>
-                        <%= @publication.user.phone %></p>
-                    </div>
-                    <div class="col-md-1">
-                      <%= image_tag(@publication.user.avatar, class: 'img-profile-show-photo') %>
-                    </div>
+                  <div class="col-md-6">
+                    <p class="text-show-photo"><%= image_tag 'user.png', class: 'img-ico-show-dollar-photo' %>
+                      <%= @publication.user.name %></p>
+                    <p class="text-show-photo"><%= image_tag 'email.png', class: 'img-ico-show-dollar-photo' %>
+                      <%= @publication.user.email %></p>
+                    <p class="text-show-photo"><%= image_tag 'cell.png', class: 'img-ico-show-dollar-photo' %>
+                      <%= @publication.user.phone %></p>
+                  </div>
+                  <div class="col-md-1">
+                    <%= image_tag(@publication.user.avatar, class: 'img-profile-show-photo') %>
                   </div>
                 </div>
               </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-5">
           <div class="show-group">
             <p class="text-show-property">
               <%= image_tag 'address-ico.png', class: 'img-ico' %>
@@ -183,50 +154,71 @@
             </p>
           </div>
         </div>
+        <div class="col-md-1">
+          
+        </div>
       </div>
       <br>
       <div class="row">
         <div class="col-md-6">
-          <div class="show-description text-description">
-            <p><strong>Descripción:</strong></p>
-            <p><%= @publication.description %></p>
+          <div class="show-group">
+            <p class="text-show-property">
+              <strong>Descripción:</strong></p>
+            <p class="text-show-property">
+              <%= @publication.description %></p>
           </div>
         </div>
         <div class="col-md-6">
-          <div class="show-description text-description">
-            <p><strong>Ubicación:</strong></p>
-            <div id="map" class="map-google">
-            </div>
-          </div>
+          <div class="show-group">
+            <p class="text-show-property">
+              <strong>Ubicación:</strong></p>
+            <div id="map" class="map-google"></div>
 
+            <!-- Script Geolocalizacón -->
 
-          <script src="https://cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
+            <script src="https://cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
 
-          <script>
-            function initMap(){
-              handler = Gmaps.build('Google');
-              handler.buildMap({
-                provider: {
-                  zoom: 16,
-                  center: {
+            <script>
+              function initMap(){
+                handler = Gmaps.build('Google');
+                handler.buildMap({
+                  provider: {
+                    zoom: 16,
+                    center: {
+                      lat: <%= @publication.latitude %>,
+                      lng: <%= @publication.longitude %>
+                    }
+                  },
+                  internal: {id: 'map'}
+                }, 
+                function(){
+                  markers = handler.addMarkers([{
                     lat: <%= @publication.latitude %>,
-                    lng: <%= @publication.longitude %>
-                  }
-                },
-                internal: {id: 'map'}
-              }, 
-              function(){
-                markers = handler.addMarkers([{
-                  lat: <%= @publication.latitude %>,
-                  lng: <%= @publication.longitude %>,
-                  
-                }]);
-              });
-            };
-          </script>
+                    lng: <%= @publication.longitude %>,
+                    
+                  }]);
+                });
+              };
+            </script>
 
-          <script src="https://maps.google.com/maps/api/js?key=AIzaSyChBYkswOMFSQyG39OjwXPvC8EKePxKoVc&callback=initMap" async defer></script>
+            <script src="https://maps.google.com/maps/api/js?key=AIzaSyChBYkswOMFSQyG39OjwXPvC8EKePxKoVc&callback=initMap" async defer></script>
 
+            <!-- end -->
+
+          </div>
+        </div>
+      </div>
+      <br>
+      <br>
+      <div class="row">
+        <div class="col-md-4 text-center">
+          <%= link_to "Aviso Anterior", @publication.prev %>
+        </div>
+        <div class="col-md-4 text-center">
+          <%= link_to 'Volver a Avisos', publications_path %>
+        </div>
+        <div class="col-md-4 text-center">
+          <%= link_to "Próximo Aviso", @publication.next %>
         </div>
       </div>
     </div>

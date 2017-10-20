@@ -33,4 +33,23 @@ class Publication < ApplicationRecord
   #   self.save
   #   page_views
   # end
+
+#  def next
+#    Publication.where("id > ?", id).limit(1).first
+#  end#
+
+#  def prev
+#    Publication.where("id < ?", id).limit(1).first
+#  end
+
+
+  def next
+    Publication.where(["id > ?", id]).first
+  end
+
+  def prev
+    Publication.where(["id < ?", id]).last
+  end
+
+
 end
