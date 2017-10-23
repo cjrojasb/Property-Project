@@ -102,6 +102,14 @@ hr.separator-show {
   min-height: 230px
 }
 
+
+// Últimos avisos
+
+.display-index-latest {
+  background-color: red;
+  min-height: auto;
+}
+
 // Imágenes Show
 
 .carousel-inner>.item>img {
@@ -120,6 +128,12 @@ hr.separator-show {
 }
 
 // Show-property
+
+.show-group-description {
+  text-align: justify;
+  min-height: 200px;
+  max-height: 250px;
+}
 
 .text-show-property {
   font-size: 17px;
@@ -223,6 +237,5 @@ hr.separator-show {
 }
 
 .form-control {
-  font-size: 11px;
-  color: red;
+  font-size: 13px;
 }

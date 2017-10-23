@@ -1,0 +1,29 @@
+<section class="bg-primary" id="about">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h2 class="section-heading">Últimos Avisos</h2>
+        <hr class="light">
+      </div>
+      <div class="row">
+        <% @publications.each do |publication| %>
+         <div class="col-md-3">
+          <div class="thumbnail display-index-latest">
+            <%= link_to (image_tag(publication.publication_attachments.first.photo.thumb, class: 'img-responsive')), publication unless publication.publication_attachments.empty? %>
+            <div class="caption text-center">
+              <h4><%= publication.title %></h4>
+            </div>      
+          </div>
+          <br>
+        </div>
+        <% end %>
+      </div>
+      <div class="col-md-12 text-center">
+       <%= link_to "Ver Todo", publications_path, class: 'btn btn-warning btn-xl' %>
+      </div>
+      <!--
+      <a href="#services" class="page-scroll btn btn-default btn-xl sr-button">Get Started!</a>
+    -->
+    </div>
+  </div>
+</section>
