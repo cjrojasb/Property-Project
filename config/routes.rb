@@ -8,7 +8,11 @@ Rails.application.routes.draw do
 
   get 'pages/index'
 
-  resources :publications 
+  resources :publications do
+    member do
+      post "contact_email"
+    end
+  end
   
   #resources :pages
 

@@ -20,6 +20,8 @@ gem 'mini_magick'
 gem 'geocoder'
 gem 'gmaps4rails'
 gem 'underscore-rails'
+# Gem Dotenv
+gem 'dotenv-rails'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
 # Use Puma as the app server

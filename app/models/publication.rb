@@ -27,22 +27,6 @@ class Publication < ApplicationRecord
   validates :description, presence: {message: "Descripción es requerida"}
   validates :address, presence: {message: "Dirección es requerida"}
 
-  # def increment(by = 1)
-  #   self.page_views ||= 0
-  #   self.page_views += by
-  #   self.save
-  #   page_views
-  # end
-
-#  def next
-#    Publication.where("id > ?", id).limit(1).first
-#  end#
-
-#  def prev
-#    Publication.where("id < ?", id).limit(1).first
-#  end
-
-
   def next
     Publication.where(["id > ?", id]).first
   end

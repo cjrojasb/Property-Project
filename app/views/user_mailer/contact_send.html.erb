@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <link rel="stylesheet" href="">
+</head>
+<body>
+  <div class="row">
+    <p style="text-align: left; font-size: 15px; color: black;""><strong>Property App</strong></p>
+    <hr class="separator">
+    <div class="text-center">
+      <div>
+        <img src="http://www.freepngimg.com/thumb/chat/2-2-chat-free-download-png-thumb.png" style=" width:35px;">
+        <h1 style="text-align: center; font-size: 25px; color: black;">Nuevo Mensaje</h1>
+        <p style="text-align: center; font-size: 17px; color:black;">Acerca de tu aviso: <i><%= @publication.title %></i></p>
+      </div>
+      <div style="text-align: center; border: 1px solid darkgray; background-color: #f7f7f7;">
+        <p style="font-size: 15px; color: black"><strong><%= @name_sent %></strong></p>
+        <p style="font-size: 15px; color: black"><%= @phone_sent %></p>
+        <p style="font-size: 15px; color: black"><%= @email_sent %></p>
+        <p style="font-size: 15px; color: black"><%= @message_sent %></p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

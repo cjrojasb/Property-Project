@@ -67,9 +67,14 @@ class PublicationsController < ApplicationController
   # GET /publications/1
   # GET /publications/1.json
   def show
-    @publication.page_views += 1
+    @publication.page_views += 1  
     @publication.save
     @publication_attachments = @publication.publication_attachments.all
+  end
+
+  def contact_email
+    @publication = Publication.find(params[:id])
+    UserMailer.contact_send(current_user, @publication, params[:name_sent], params[:phone_sent], params[:email_sent], params[:message_sent]).deliver_now()
   end
 
   # GET /publications/new

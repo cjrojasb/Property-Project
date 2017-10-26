@@ -206,24 +206,33 @@
               <p class="text-show-property">
                 <strong>Contacta al Vendedor</strong></p>
               <br>
-              <div class="form-group">
-                <label for="name">Nombre</label>
-                <input type="text" class="form-control" id="nombre" placeholder="Ingresa tu nombre">
-              </div>
-              <div class="form-group">
-                <label for="phone">Teléfono</label>
-                <input type="phone" class="form-control" id="phone" placeholder="Ingresa tu teléfono">
-              </div>
-              <div class="form-group">
-                <label for="email">Correo Electrónico</label>
-                <input type="email" class="form-control" id="email" placeholder="Ingresa tu correo electrónico">
-              </div>
-              <div class="form-group">
-                <button type="button" class="btn btn-success btn-sm">Enviar</button>
-              </div>
+              <%= form_tag(contact_email_publication_path(@publication),{class:'form-horizontal', method: :post}) do %>
+                <div class="form-group">
+                  <%= label_tag :name_sent, "Nombre" %>
+                  <%= text_field_tag :name_sent, nil, class: 'form-control'%>
+                </div>
+                <div class="form-group">
+                  <%= label_tag :phone_sent, "Teléfono" %>
+                  <%= phone_field_tag :phone_sent, nil, class: 'form-control' %>
+                </div>
+                <div class="form-group">
+                  <%= label_tag :email_sent, "E-mail" %>
+                  <%= email_field_tag :email_sent, nil, class: 'form-control' %>
+                </div>
+                <div class="form-group">
+                  <%= label_tag :message_sent, "Mensaje" %>
+                  <%= text_area_tag :message_sent, nil, class: 'form-control' %>
+                </div>
+                <div class="form-group">
+                  <%= submit_tag "Enviar", class: 'btn btn-success btn-sm' %>
+                </div>
+              <% end %>
             </div>
           </div> 
         </div>
+
+
+
       </div>
       <br>
       <br>
