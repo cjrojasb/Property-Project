@@ -90,13 +90,13 @@
                   <div class="col-md-6">
                     <p class="text-show-photo"><%= image_tag 'user.png', class: 'img-ico-show-dollar-photo' %>
                       <%= @publication.user.name %></p>
-                    <p class="text-show-photo"><%= image_tag 'email.png', class: 'img-ico-show-dollar-photo' %>
+                    <p class="text-show-photo-email"><%= image_tag 'email.png', class: 'img-ico-show-dollar-photo' %>
                       <%= @publication.user.email %></p>
                     <p class="text-show-photo"><%= image_tag 'cell.png', class: 'img-ico-show-dollar-photo' %>
                       <%= @publication.user.phone %></p>
                   </div>
                   <div class="col-md-1">
-                    <%= image_tag(@publication.user.avatar, class: 'img-profile-show-photo') %>
+                    <%= image_tag(@publication.user.avatar, class: 'img-profile-show-photo img-circle') %>
                   </div>
                 </div>
               </div>

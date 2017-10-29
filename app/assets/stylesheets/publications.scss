@@ -24,6 +24,12 @@ hr.separator-show {
   margin-bottom: 10px;
 }
 
+.img-logo {
+  width: 240px;
+  margin-top: 9px;
+  margin-left: 15px;
+}
+
 .img-ico {
   width: 35px;
 }
@@ -92,6 +98,7 @@ hr.separator-show {
   width: 100px;
 }
 
+
 // Imágenes Publicaciones Index
 
 .display-index {
@@ -141,7 +148,12 @@ hr.separator-show {
 
 .text-show-photo {
   font-weight: bold;
-  font-size: 15px;
+  font-size: 14px;
+}
+
+.text-show-photo-email {
+  font-weight: bold;
+  font-size: 13px;
 }
 
 .title-show {
