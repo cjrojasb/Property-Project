@@ -9,11 +9,42 @@
   <div class="container">
     <section class="my-notices">  
       <div class="row">
-        <div class="col-md-12 text-center">
+        <div class="col-md-6 text-center">
           <% if user_signed_in? %>
-          <h1><%= image_tag(current_user.avatar, class: 'img-profile-account img-circle') unless current_user.avatar.nil? %>
-            Bienvenido, <%= current_user.name %></h1>
+            <%= image_tag(current_user.avatar, class: 'img-profile-account img-circle') unless current_user.avatar.nil? %>
+            <h2>Bienvenido, <%= current_user.name %></h2>
           <% end %>
+        </div>
+        <div class="col-md-6">
+          <div class="col-md-10">
+            <div class="panel panel-default">
+              <div class="panel-heading text-center">
+                <h4><strong>Mis Datos</strong></h4>
+              </div>
+              <div class="panel-body">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <%= label_tag :name_sent, "Nombre:" %>
+                    <%= current_user.name %>
+                  </div>
+                  <div class="form-group">
+                    <%= label_tag :name_sent, "Celular:" %>
+                    <%= current_user.phone %>
+                  </div>
+                  <div class="form-group">
+                    <%= label_tag :name_sent, "E-mail:" %>
+                    <%= current_user.email %>
+                  </div>
+                  <div class="form-group">
+                    <%= link_to "Editar Datos", edit_user_registration_path, class: 'btn btn-warning btn-sm' %>
+                  </div>
+                </div>
+                <div class="col-md-6 text-center">
+                  <%= image_tag(current_user.avatar, class: 'img-profile-account img-circle') unless current_user.avatar.nil? %>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <hr class="separator">

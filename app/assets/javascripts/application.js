@@ -14,6 +14,8 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require underscore
+//= require jquery.validate
+//= require jquery.validate.localization/messages_es
 //= require gmaps/google
 //= require bootstrap
 //= require scrollreveal
@@ -40,3 +42,4 @@ $(document).on('turbolinks:load',function(){
     }
   });
 });
+

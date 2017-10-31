@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   before_action :authenticate_user!, except: [:index, :show]
 
-  #load_and_authorize_resource class:PagesController
+  #load_and_authorize_resource
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 

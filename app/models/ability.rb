@@ -1,16 +1,16 @@
 class Ability
   include CanCan::Ability
 
-#  def initialize(user)
-#    user ||= User.new(role: 2) # guest user (not logged in)
-#    if user.admin?
-#      can :manage, :all
-#    elsif user.normal?
-#      can :read, :all
-#      can :manage, Publication, {user_id: user.id} #Usuario solo maneja Publicaciones creadas por el
-#    else
-#      can :read, :all
-#    end
+    def initialize(user)
+      user ||= User.new(role: 2) # guest user (not logged in)
+      if user.admin?
+        can :manage, :all
+      elsif user.normal?
+        can :read, :all
+        can :manage, Publication, {user_id: user.id} #Usuario solo maneja Publicaciones creadas por el
+      else
+        can :read, :all
+      end
 
     #
     # The first argument to `can` is the action you are giving the user

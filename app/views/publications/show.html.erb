@@ -1,9 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_publication_path(@publication) %> |
-<%= link_to 'Back', publications_path %>
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +10,10 @@
 <body>
   <div class="container">
     <section class="show-property">
+      <% if can? :manage, @Publication %>
+        <%= link_to 'Edit', edit_publication_path(@publication) %> |
+        <%= link_to 'Back', publications_path %>
+      <% end %>
       <%= link_to 'Volver a Avisos', publications_path %>
       <div class="row">
         <div class="col-md-12 text-center">
@@ -202,37 +202,63 @@
         </div>
         <div class="col-md-6">
           <div class="row">
-            <div class="col-md-offset-2 col-md-8">
-              <p class="text-show-property">
-                <strong>Contacta al Vendedor</strong></p>
-              <br>
-              <%= form_tag(contact_email_publication_path(@publication),{class:'form-horizontal', method: :post}) do %>
-                <div class="form-group">
-                  <%= label_tag :name_sent, "Nombre" %>
-                  <%= text_field_tag :name_sent, nil, class: 'form-control'%>
+            <div class="col-md-offset-2 col-md-8">   
+              <div class="panel panel-default">
+                <div class="panel-heading text-center">
+                  <h4><strong>Contacta al Vendedor</strong></h4>
                 </div>
-                <div class="form-group">
-                  <%= label_tag :phone_sent, "Teléfono" %>
-                  <%= phone_field_tag :phone_sent, nil, class: 'form-control' %>
+                <div class="panel-body">
+                  <%= form_tag(contact_email_publication_path(@publication), {class:'form-horizontal', id:'form-email', method: :post, remote: true}) do %>
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <%= label_tag :name_sent, "Nombre:" %>
+                        <%= text_field_tag :name_sent, nil, class: 'form-control', autofocus: true, required: true %>
+                      </div>
+                      <div class="form-group">
+                        <%= label_tag :phone_sent, "Celular:" %>
+                        <%= phone_field_tag :phone_sent, nil, class: 'form-control', required: true %>
+                      </div>
+                      <div class="form-group">
+                        <%= label_tag :email_sent, "E-mail:" %>
+                        <%= email_field_tag :email_sent, nil, class: 'form-control', required: true %>
+                      </div>
+                      <div class="form-group">
+                        <%= label_tag :message_sent, "Mensaje:" %>
+                        <%= text_area_tag :message_sent, nil, class: 'form-control', required: true %>
+                      </div>
+                      <div class="form-group">
+                        <%= submit_tag "Enviar", class: 'btn btn-success btn-sm', id:'new-email' %>
+                      </div>
+                    </div>
+                  <% end %>
                 </div>
-                <div class="form-group">
-                  <%= label_tag :email_sent, "E-mail" %>
-                  <%= email_field_tag :email_sent, nil, class: 'form-control' %>
-                </div>
-                <div class="form-group">
-                  <%= label_tag :message_sent, "Mensaje" %>
-                  <%= text_area_tag :message_sent, nil, class: 'form-control' %>
-                </div>
-                <div class="form-group">
-                  <%= submit_tag "Enviar", class: 'btn btn-success btn-sm' %>
-                </div>
-              <% end %>
+              </div>
+              
+
             </div>
+
+            <script>
+              function validateForm(){
+                $("#form-email").validate({
+                  debug: false,
+                  rules: {
+                    "name_sent": {required: true},
+                    "phone_sent": {required: true, minlength: 8, maxlength: 9},
+                    "email_sent": {required: true, email: true},
+                    "message_sent": {required: true}
+                  }
+                });
+                $("#new-email").click(function(event) {
+                 
+                  event.stopPropagation(); 
+                });
+              }
+
+             $(document).on('page:load', validateForm());
+            
+            </script>
           </div> 
         </div>
-
-
-
       </div>
       <br>
       <br>
