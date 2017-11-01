@@ -212,7 +212,7 @@
                     <div class="col-md-12">
                       <div class="form-group">
                         <%= label_tag :name_sent, "Nombre:" %>
-                        <%= text_field_tag :name_sent, nil, class: 'form-control', autofocus: true, required: true %>
+                        <%= text_field_tag :name_sent, nil, class: 'form-control', required: true %>
                       </div>
                       <div class="form-group">
                         <%= label_tag :phone_sent, "Celular:" %>
@@ -233,8 +233,6 @@
                   <% end %>
                 </div>
               </div>
-              
-
             </div>
 
             <script>
@@ -249,13 +247,10 @@
                   }
                 });
                 $("#new-email").click(function(event) {
-                 
                   event.stopPropagation(); 
                 });
               }
-
              $(document).on('page:load', validateForm());
-            
             </script>
           </div> 
         </div>

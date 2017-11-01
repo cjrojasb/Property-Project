@@ -20,9 +20,8 @@ gem 'mini_magick'
 gem 'geocoder'
 gem 'gmaps4rails'
 gem 'underscore-rails'
-
+# Gem JQuery-Validations
 gem 'jquery-validation-rails'
-
 # Gem Dotenv
 gem 'dotenv-rails'
 # Use postgresql as the database for Active Record
