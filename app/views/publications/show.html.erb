@@ -212,19 +212,19 @@
                     <div class="col-md-12">
                       <div class="form-group">
                         <%= label_tag :name_sent, "Nombre:" %>
-                        <%= text_field_tag :name_sent, nil, class: 'form-control', required: true %>
+                        <%= text_field_tag :name_sent, nil, class: 'form-control' %>
                       </div>
                       <div class="form-group">
                         <%= label_tag :phone_sent, "Celular:" %>
-                        <%= phone_field_tag :phone_sent, nil, class: 'form-control', required: true %>
+                        <%= phone_field_tag :phone_sent, nil, class: 'form-control' %>
                       </div>
                       <div class="form-group">
                         <%= label_tag :email_sent, "E-mail:" %>
-                        <%= email_field_tag :email_sent, nil, class: 'form-control', required: true %>
+                        <%= email_field_tag :email_sent, nil, class: 'form-control' %>
                       </div>
                       <div class="form-group">
                         <%= label_tag :message_sent, "Mensaje:" %>
-                        <%= text_area_tag :message_sent, nil, class: 'form-control', required: true %>
+                        <%= text_area_tag :message_sent, nil, class: 'form-control' %>
                       </div>
                       <div class="form-group">
                         <%= submit_tag "Enviar", class: 'btn btn-success btn-sm', id:'new-email' %>
@@ -240,10 +240,16 @@
                 $("#form-email").validate({
                   debug: false,
                   rules: {
-                    "name_sent": {required: true},
-                    "phone_sent": {required: true, minlength: 8, maxlength: 9},
-                    "email_sent": {required: true, email: true},
-                    "message_sent": {required: true}
+                    name_sent: {required: true},
+                    phone_sent: {required: true, minlength: 8, maxlength: 9},
+                    email_sent: {required: true, email: true},
+                    message_sent: {required: true}
+                  },
+                  messages: {
+                    name_sent: "Ingresa tu nombre",
+                    phone_sent: "Ingresa tu celular",
+                    email_sent: "Debes ingresar un e-mail valido",
+                    message_sent: "Debes ingresar tu mensaje"
                   }
                 });
                 $("#new-email").click(function(event) {

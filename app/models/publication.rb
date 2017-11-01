@@ -15,15 +15,11 @@ class Publication < ApplicationRecord
 
   attr_accessor :equipments_ids
 
-  # Geo Coder
-  # reverse_geocoded_by :latitude, :longitude
-  # after_validation :reverse_geocode
-
   geocoded_by :address  
   after_validation :geocode  
 
   #Validaciones
-  validates :title, presence: {message_: "Título es requerido" }
+  #validates :title, presence: {message_: "Título es requerido" }
   validates :description, presence: {message: "Descripción es requerida"}
   validates :address, presence: {message: "Dirección es requerida"}
 
