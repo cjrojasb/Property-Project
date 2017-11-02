@@ -23,15 +23,15 @@
         <%# f.hidden_field :user_id, :value => current_user.id %>
         <div class="form-group">
           <%= label :category, "Categoría" %>
-          <%= f.collection_select :category_id, @categories, :id, :name, {prompt: "Escoge una categoría"}, class: 'form-control', name: 'category' %>
+          <%= f.collection_select :category_id, @categories, :id, :name, {prompt: "Escoge una categoría"}, class: 'form-control', required: true %>
         </div>
         <div class="form-group">
           <%= label :type, "Tipo de Inmueble" %>
-          <%= f.collection_select :type_id, @types, :id, :name, {prompt: "Escoge un tipo de inmueble"}, class: 'form-control', name: 'type' %>
+          <%= f.collection_select :type_id, @types, :id, :name, {prompt: "Escoge un tipo de inmueble"}, class: 'form-control', required: true %>
         </div>
         <div class="form-group">
           <%= label :title, "Título" %>
-          <%= f.text_field :title, name:'title', class: 'form-control', placeholder: "Ej: Vendo casa en Vitacura" %>
+          <%= f.text_field :title, class: 'form-control', placeholder: "Ej: Vendo casa en Vitacura", required: true %>
         <% if publication.errors[:title].any? %>
           <span class="label label-danger">
             <% publication.errors[:title].each do |message| %>
@@ -42,11 +42,11 @@
         </div>
         <div class="form-group">
           <%= label :address, "Dirección" %>
-          <%= f.text_field :address, name: 'address', class: 'form-control', placeholder: "Ej: Av. Simón Bolívar, 3765, Región Metropolitana" %>
+          <%= f.text_field :address, class: 'form-control', placeholder: "Ej: Av. Simón Bolívar, 3765, Región Metropolitana", required: true %>
         </div>
         <div class="form-group">
           <%= f.label :region_id, "Región" %>
-          <%= f.collection_select :region_id, @regions, :id, :name, {prompt: "Selecciona una Región"}, class: 'form-control', name: 'region' %>
+          <%= f.collection_select :region_id, @regions, :id, :name, {prompt: "Selecciona una Región"}, class: 'form-control', required: true %>
         </div>
         <div class="form-group" id="communes">
           <%= f.label :commune_id, "Comuna" %>
@@ -91,11 +91,11 @@
          </div>
         <div class="form-group">
           <%= label :description, "Descripción" %>
-          <%= f.text_area :description, name:'description', class: 'form-control', placeholder: "Ej: Aire acondicionado - Piscina - Jardin"  %>
+          <%= f.text_area :description, class: 'form-control', placeholder: "Ej: Aire acondicionado - Piscina - Jardin", required: true %>
         </div>
         <div class="form-group">
           <%= label :price, "Precio" %>
-          <%= f.number_field :price, name:'price', class: 'form-control', placeholder: "Ej: 3000 UF"  %>
+          <%= f.number_field :price, class: 'form-control', placeholder: "Ej: 3000 UF", required: true %>
         </div>
 
         <!--
@@ -126,34 +126,35 @@
       <% end %>
     </div>
     <script>
-      function validateForm(){
-        $("#form-new-publication").validate({
-          debug: false,
-          rules: {
-            title: {required: true},
-            category: {required: true},
-            type: {required: true},
-            address: {required: true},
-            region: {required: true},
-            description: {required: true},
-            price: {required: true}
-          },
-          messages: {
-            title: "Debes ingresar un título",
-            category: "Debes seleccionar una categoría",
-            type: "Debes seleccionar un tipo de inmueble",
-            address: "Ingresa tu dirección",
-            region: "Selecciona una región",
-            description: "Debes ingresar una descripción",
-            price: "Ingres un precio valido"
-          }
-        });
-        $("#new-publication").click(function(event) {
-          event.stopPropagation(); 
-        });
-      }
-     $(document).on('page:load', validateForm());
-    </script>
+        function validateForm(){
+          $("#form-new-publication").validate({
+            debug: true,
+            rules: {
+              title: {required: true},
+              category: {required: true},
+              type: {required: true},
+              address: {required: true},
+              region: {required: true},
+              description: {required: true},
+              price: {required: true}
+            },
+            messages: {
+              title: "Debes ingresar un título",
+              category: "Debes seleccionar una categoría",
+              type: "Debes seleccionar un tipo de inmueble",
+              address: "Ingresa tu dirección",
+              region: "Selecciona una región",
+              description: "Debes ingresar una descripción",
+              price: "Ingres un precio valido"
+            }
+          });
+          $("#new-publication").click(function(event) {
+            event.stopPropagation(); 
+          });
+        }
+       $(document).on('page:load', validateForm());
+      </script>
+
 
 
 

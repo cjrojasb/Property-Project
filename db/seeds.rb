@@ -1,3 +1,4 @@
+
 # Destroy all Tables
 PropertyEquipment.destroy_all
 Publication.destroy_all
@@ -7,6 +8,15 @@ Type.destroy_all
 Equipment.destroy_all
 Commune.destroy_all
 Region.destroy_all
+AdminUser.destroy_all
+
+# Active Admin
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+
+# User Devise
+User.create!(name: 'Carlos Rojas', email: 'carlos.rojas.burgos@gmail.com', phone: 984641677, password: 'carlos', password_confirmation: 'carlos')
+User.create!(name: 'Alvaro Ponce', email: 'alvaro@gmail.com', phone: 996340141, password: 'alvaro', password_confirmation: 'alvaro')
+User.create!(name: 'Gonzalo Sanchez', email: 'gonzalo@gmail.com', phone: 997487688, password: 'gonzalo', password_confirmation: 'gonzalo')
 
 # Category
 Category.create([{name: 'Arrendar'}, {name: 'Vender'}])
@@ -396,3 +406,4 @@ Commune.create(name: "El Monte", province: "Talagante", region: Region.find_by(n
 Commune.create(name: "Isla de Maipo", province: "Talagante", region: Region.find_by(name: "Región Metropolitana"))
 Commune.create(name: "Padre Hurtado", province: "Talagante", region: Region.find_by(name: "Región Metropolitana"))
 Commune.create(name: "Peñaflor", province: "Talagante", region: Region.find_by(name: "Región Metropolitana"))
+

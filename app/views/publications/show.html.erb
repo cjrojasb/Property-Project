@@ -212,19 +212,19 @@
                     <div class="col-md-12">
                       <div class="form-group">
                         <%= label_tag :name_sent, "Nombre:" %>
-                        <%= text_field_tag :name_sent, nil, class: 'form-control' %>
+                        <%= text_field_tag :name_sent, nil, class: 'form-control', required: true %>
                       </div>
                       <div class="form-group">
                         <%= label_tag :phone_sent, "Celular:" %>
-                        <%= phone_field_tag :phone_sent, nil, class: 'form-control' %>
+                        <%= phone_field_tag :phone_sent, nil, class: 'form-control', required: true %>
                       </div>
                       <div class="form-group">
                         <%= label_tag :email_sent, "E-mail:" %>
-                        <%= email_field_tag :email_sent, nil, class: 'form-control' %>
+                        <%= email_field_tag :email_sent, nil, class: 'form-control', required: true %>
                       </div>
                       <div class="form-group">
                         <%= label_tag :message_sent, "Mensaje:" %>
-                        <%= text_area_tag :message_sent, nil, class: 'form-control' %>
+                        <%= text_area_tag :message_sent, nil, class: 'form-control', required: true %>
                       </div>
                       <div class="form-group">
                         <%= submit_tag "Enviar", class: 'btn btn-success btn-sm', id:'new-email' %>
@@ -238,7 +238,7 @@
             <script>
               function validateForm(){
                 $("#form-email").validate({
-                  debug: false,
+                  debug: true,
                   rules: {
                     name_sent: {required: true},
                     phone_sent: {required: true, minlength: 8, maxlength: 9},
