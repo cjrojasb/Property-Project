@@ -17,6 +17,7 @@ AdminUser.create!(email: 'admin@example.com', password: 'password', password_con
 User.create!(name: 'Carlos Rojas', email: 'carlos.rojas.burgos@gmail.com', phone: 984641677, password: 'carlos', password_confirmation: 'carlos')
 User.create!(name: 'Alvaro Ponce', email: 'alvaro@gmail.com', phone: 996340141, password: 'alvaro', password_confirmation: 'alvaro')
 User.create!(name: 'Gonzalo Sanchez', email: 'gonzalo@gmail.com', phone: 997487688, password: 'gonzalo', password_confirmation: 'gonzalo')
+User.create!(name: 'Claudia Torres', email: 'clautorresb@hotmail.com', phone: 966641396, password: 'carlosfit', password_confirmation: 'carlosfit')
 
 # Category
 Category.create([{name: 'Arrendar'}, {name: 'Vender'}])
