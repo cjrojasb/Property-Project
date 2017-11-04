@@ -81,6 +81,7 @@ class PublicationsController < ApplicationController
   def new
     @publication = Publication.new
     @publication_attachment = @publication.publication_attachments.build
+    @categories = Category.all
   end
 
   # GET /publications/1/edit
