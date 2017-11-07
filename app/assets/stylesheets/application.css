@@ -14,8 +14,6 @@
  *= require devise_bootstrap_views
  *= require creative
  *= require sandstone
- *= require bootstrap
- *= require font-awesome
  *= require magnific-popup
  *= require_tree .
  *= require_self

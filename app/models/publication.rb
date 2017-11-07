@@ -23,6 +23,10 @@ class Publication < ApplicationRecord
   #validates :description, presence: {message: "Descripción es requerida"}
   #validates :address, presence: {message: "Dirección es requerida"}
 
+  # Scopes
+  scope :by_title, -> (search) { where("title ilike ? OR description ilike ?", "%#{search}%", 
+        "%#{search}%")}
+
   def next
     Publication.where(["id > ?", id]).first
   end

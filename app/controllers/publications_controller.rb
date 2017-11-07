@@ -22,8 +22,7 @@ class PublicationsController < ApplicationController
     #end
 
     if params[:search_title].present?
-      @publications = @publications.where("title ilike ? OR description ilike ?", "%#{params[:search_title]}%", 
-        "%#{params[:search_title]}%")
+      @publications = @publications.by_title(params[:search_title])
     end
 
     if params[:search_type].present? 
