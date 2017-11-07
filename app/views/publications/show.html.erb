@@ -16,38 +16,27 @@
       <% end %>
       <%= link_to 'Volver a Avisos', publications_path %>
       <div class="row">
-        <div class="col-md-6 text-center">
-          <p id="notice"><%= notice %></p>
+        <div class="col-md-12 text-center">
           <h2><%= @publication.title %></h2>
-        </div>
-        <div class="col-md-6">
-          <%# @publications.each do |publication| %>
-            <%# if publication.category.name == "Arrendar" %>
-              <%#= image_tag 'Arrienda.png', class: 'img-notice' %>
-            <%# end %>
-            <%# if publication.category.name == "Vender" %>
-              <%#= image_tag 'Vender.png', class: 'img-notice' %>
-            <%# end %>
-          <%# end %>
+          <hr class="separator">
         </div>
 
-        <!--
+        
         <div class="row">
           <div class="col-md-4 show-information">
             <%= image_tag 'ubication.png', class: 'img-ico-show' %>
             <%= @publication.region.name unless @publication.region_id.nil? %>
           </div>
           <div class="col-md-4 show-information">
-            <%= image_tag 'location.png', class: 'img-ico-show' %>
-            <%= @publication.commune.name unless @publication.commune_id.nil? %>
+            <i class="fa fa-eye text-primary" aria-hidden="true"></i>
+            <span><%= @publication.page_views %></span>
           </div>
           <div class="col-md-4 show-information">
-            <%= image_tag 'dollar.png', class: 'img-ico-show-dollar' %>
+            <i class="fa fa-usd text-success" aria-hidden="true"></i>
             <strong><%= @publication.price unless @publication.price.nil? %></strong>
           </div>
         </div>
-        -->
-
+        
       </div>
       <br><br>
       <div class="row">
@@ -62,17 +51,22 @@
                   <li data-target="#carousel-example-generic" data-slide-to="2"></li>
                 </ol>
                 <!-- Wrapper for slides -->
-                <div class="carousel-inner" role="listbox">
+                <div class="carousel-inner image-publication" role="listbox">
                   <% @publication_attachments.each_with_index do |element, index| %>
-                  <% if index == 0 %>
-                  <div class="item active">
-                    <%= image_tag element.photo %>
-                  </div>
+                    <% if index == 0 %>
+                      <div class="item active">
+                        <%= image_tag element.photo %>
+                      </div>
+                    <% else %>
+                      <div class="item">
+                        <%= image_tag element.photo %>
+                      </div> 
+                    <% end %>                    
+                  <% end %>
+                  <% if @publication.category.name == "Arrendar" %>
+                    <%= image_tag 'Arrienda-img.png', class: 'img-notice' %>
                   <% else %>
-                  <div class="item">
-                    <%= image_tag element.photo %>
-                  </div> 
-                  <% end %>                    
+                    <%= image_tag 'Vende-img.png', class: 'img-notice-sale' %>
                   <% end %>    
                 </div>
                 <!-- Controls -->
@@ -83,8 +77,8 @@
                 <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
                   <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                   <span class="sr-only">Next</span>
-                </a>
-              </div>            
+                </a>       
+              </div>  
             </div>
             <hr class="separator-show">
               <div class="row">
@@ -94,8 +88,8 @@
                     <%= @publication.region.name unless @publication.region_id.nil? %></p>
                     <p class="text-show-photo"><%= image_tag 'location.png', class: 'img-ico-show-photo' %>
                     <%= @publication.commune.name unless @publication.region_id.nil? %></p>
-                    <p class="text-show-photo"><%= image_tag 'dollar.png', class: 'img-ico-show-dollar-photo' %>
-                    <%= @publication.price unless @publication.price.nil? %></p>
+                    <p class="text-show-photo"><%= image_tag 'Calendar-ico.png', class: 'img-ico-show-photo' %>
+                    <span><%= @publication.created_at.strftime("%d de %B") %></span>
                   </div>
                   <div class="col-md-6">
                     <p class="text-show-photo"><%= image_tag 'user.png', class: 'img-ico-show-dollar-photo' %>
@@ -282,7 +276,7 @@
         </div>
       </div>
       <br>
-      <br>
+      <hr class="separator">
       <div class="row">
         <div class="col-md-4 text-center">
           <%= link_to "Aviso Anterior", @publication.prev %>
