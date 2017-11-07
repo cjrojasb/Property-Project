@@ -3,43 +3,32 @@
 <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
 
 <footer class="footer-distributed">
-
   <div class="footer-left">
-
     <h3>Company<span>logo</span></h3>
-
+    <%= link_to (image_tag('go.png', class: 'img-logo img-responsive')), pages_index_path %>
     <p class="footer-links">
-      <a href="#">Home</a>
-      ·
-      <a href="#">Blog</a>
-      ·
-      <a href="#">Pricing</a>
-      ·
-      <a href="#">About</a>
-      ·
-      <a href="#">Faq</a>
-      ·
-      <a href="#">Contact</a>
+      <%= link_to "Inicio", pages_index_path, class: 'page-scroll' %>
+      <a class="page-scroll" href="#about">Últimos Avisos</a>
+      <a class="page-scroll" href="#services">Beneficios</a>
+      <a class="page-scroll" href="#contact">Contacto</a>
     </p>
-
-    <p class="footer-company-name">Company Name &copy; 2015</p>
+    <p class="footer-company-name">Carlos Rojas Burgos &copy; 2017</p>
   </div>
 
   <div class="footer-center">
 
     <div>
       <i class="fa fa-map-marker"></i>
-      <p><span>21 Revolution Street</span> Paris, France</p>
+      <p>Santiago, Chile</p>
     </div>
 
     <div>
       <i class="fa fa-phone"></i>
-      <p>+1 555 123456</p>
+      <p>+569 84641677</p>
     </div>
-
     <div>
       <i class="fa fa-envelope"></i>
-      <p><a href="mailto:support@company.com">support@company.com</a></p>
+      <p><a href="mailto:your-email@your-domain.com">propertyapp.noreply@gmail.com</a></p>
     </div>
 
   </div>
@@ -47,8 +36,9 @@
   <div class="footer-right">
 
     <p class="footer-company-about">
-      <span>About the company</span>
-      Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+      <span>Go Property</span>
+      Contactate con nosotros, atenderemos tus dudas tan pronto como sea posible.
+                Property Ap
     </p>
 
     <div class="footer-icons">
