@@ -70,6 +70,8 @@ class PublicationsController < ApplicationController
     @publication.page_views += 1  
     @publication.save
     @publication_attachments = @publication.publication_attachments.all
+    
+    @publications = Publication.all
   end
 
   def contact_email
@@ -99,8 +101,10 @@ class PublicationsController < ApplicationController
     #@publication.user = current_user if user_signed_in? -> Soluciona el error 'user must exist' al crear una nueva publicacion
     respond_to do |format|
       if @publication.save
-        params[:publication_attachments]['photo'].each do |a|
-           @publication_attachment = @publication.publication_attachments.create!(:photo => a)
+        unless params[:publication_attachments].nil?
+          params[:publication_attachments]['photo'].each do |a|
+             @publication_attachment = @publication.publication_attachments.create!(:photo => a)
+          end
         end
         format.html { redirect_to @publication, notice: 'Publication was successfully created.' }
         format.json { render :show, status: :created, location: @publication }

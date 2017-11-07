@@ -19,9 +19,9 @@ class Publication < ApplicationRecord
   after_validation :geocode  
 
   #Validaciones
-  validates :title, presence: {message_: "Título es requerido" }
-  validates :description, presence: {message: "Descripción es requerida"}
-  validates :address, presence: {message: "Dirección es requerida"}
+  #validates :title, presence: {message_: "Título es requerido" }
+  #validates :description, presence: {message: "Descripción es requerida"}
+  #validates :address, presence: {message: "Dirección es requerida"}
 
   def next
     Publication.where(["id > ?", id]).first
