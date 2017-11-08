@@ -319,7 +319,6 @@ hr.separator-show {
   width: 100%;
   text-align: left;
   font: bold 16px sans-serif;
-
   padding: 55px 50px;
   margin-top: 80px;
 }
@@ -362,11 +361,12 @@ hr.separator-show {
   line-height: 1.8;
   text-decoration: none;
   color:  inherit;
+  font-size: 18px;
 }
 
 .footer-distributed .footer-company-name{
   color:  #8f9296;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: normal;
   margin: 0;
 }
