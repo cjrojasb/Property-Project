@@ -18,7 +18,7 @@ class Publication < ApplicationRecord
   geocoded_by :address  
   after_validation :geocode  
 
-  #Validaciones
+  # Validations
   #validates :title, presence: {message_: "Título es requerido" }
   #validates :description, presence: {message: "Descripción es requerida"}
   #validates :address, presence: {message: "Dirección es requerida"}
@@ -42,6 +42,5 @@ class Publication < ApplicationRecord
   def prev
     Publication.where(["id < ?", id]).last
   end
-
 
 end
