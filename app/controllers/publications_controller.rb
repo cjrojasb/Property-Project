@@ -1,12 +1,10 @@
 class PublicationsController < ApplicationController
   before_action :set_publication, only: [:show, :edit, :update, :destroy]
   before_action :set_all, only: [:index, :show, :new, :edit, :create]
+  before_action :access_user, only: [:edit, :update, :destroy]
   
-  #load_and_authorize_resource class:PagesController
-
-
   # GET /publications
-  # GET /publications.json
+  # GET /publications.json       
   def index
 
     @publications = Publication.all
@@ -57,6 +55,13 @@ class PublicationsController < ApplicationController
 
   # GET /publications/1/edit
   def edit
+  end
+
+  def access_user
+    unless @publication.user == current_user
+      flash[:alert] = 'Access denied'
+      redirect_to pages_index_path
+    end
   end
 
   # POST /publications
