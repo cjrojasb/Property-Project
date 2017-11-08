@@ -5,7 +5,6 @@
       <%= form_for(publication, html: { multipart: true, class:"form-horizontal", id: 'form-new-publication' }) do |f| %>
         <% if publication.errors.any? %>
         <div class="alert alert-danger text-center">
-          <%# pluralize(publication.errors.count, "error") %>
           <h3><strong>Oh No!</strong></h3>
           <p>Ha ocurrido un error</p>
           <ul>
@@ -19,8 +18,6 @@
         <%  %>
         <h3 class="subtitle-form-property text-center">Ingresa los datos de tu Propiedad</h3>
         <br>
-        <!-- Form -->   
-        <%# f.hidden_field :user_id, :value => current_user.id %>
         <div class="form-group">
           <%= label :category, "Categoría" %>
           <%= f.collection_select :category_id, @categories, :id, :name, {prompt: "Escoge una categoría"}, class: 'form-control', required: true %>
@@ -53,22 +50,12 @@
           <%= f.label :commune_id, "Comuna" %>
           <%= f.grouped_collection_select :commune_id, Region.order(:name), :communes, :name, :id, :name, {}, class: 'form-control' %>
         </div>
-        <!--
-        <div class="form-group">
-          <%# label :photo, "Imágen" %>
-          <%# f.file_field :photo %>
-          <%# f.hidden_field :photo_cache %>
-          <%# image_tag(@publication.photo) if @publication.photo? %>
-        </div>
-       -->
-
         <div class="form-group">
           <%= f.fields_for :publication_attachments do |p| %>
             <%= p.label :photo, "Imágenes" %>
             <%= p.file_field :photo, multiple: true, name: "publication_attachments[photo][]" %>
           <% end %>
         </div>
-
         <div class="form-group">
           <%= label :bedroom, "Dormitorios" %>
           <%= f.select(:bedroom, options_for_select([['1 Dormitorio', '1'], ['2 Dormitorios', '2'],['3 Dormitorios', '3'],['4 o más Dormitorios', '4']]),{},class: 'form-control') %>
@@ -111,7 +98,6 @@
             }
           });
         </script>
-
         <div class="form-group actions">
           <div class="row">
             <div class="col-md-offset-2 col-md-3">

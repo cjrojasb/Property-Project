@@ -19,6 +19,7 @@ class Publication < ApplicationRecord
   after_validation :geocode  
 
   # Validations
+  validates :title, length: { maximum: 50 }
   #validates :title, presence: {message_: "Título es requerido" }
   #validates :description, presence: {message: "Descripción es requerida"}
   #validates :address, presence: {message: "Dirección es requerida"}
