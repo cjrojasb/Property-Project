@@ -20,23 +20,45 @@
           <h2><%= @publication.title %></h2>
           <hr class="separator">
         </div>
-
-        
-        <div class="row">
-          <div class="col-md-4 show-information">
-            <%= image_tag 'ubication.png', class: 'img-ico-show' %>
-            <%= @publication.region.name unless @publication.region_id.nil? %>
+        <% if @publication.user == current_user %>
+          <div class="row">
+            <div class="col-md-5 show-information">
+              <%= image_tag 'ubication.png', class: 'img-ico-show' %>
+              <%= @publication.region.name unless @publication.region_id.nil? %>
+            </div>
+            <div class="col-md-1 show-information">
+              <i class="fa fa-eye text-primary" aria-hidden="true"></i>
+              <span><%= @publication.page_views %></span>
+            </div>
+            <div class="col-md-3 show-information">
+              <i class="fa fa-usd text-success" aria-hidden="true"></i>
+              <strong><%= @publication.price unless @publication.price.nil? %></strong>
+            </div>
+            <div class="col-md-3 show-information">
+              <%= link_to edit_publication_path(@publication), class: 'btn btn-primary btn-sm link-left' do %>
+                <span class="fa fa-pencil"></span>
+              <% end %>
+              <%= link_to @publication, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm link-left' do %>
+                <span class="glyphicon glyphicon-trash"></span>
+              <% end %>
+            </div>
           </div>
-          <div class="col-md-4 show-information">
-            <i class="fa fa-eye text-primary" aria-hidden="true"></i>
-            <span><%= @publication.page_views %></span>
+        <% else %>
+          <div class="row">
+            <div class="col-md-4 show-information">
+              <%= image_tag 'ubication.png', class: 'img-ico-show' %>
+              <%= @publication.region.name unless @publication.region_id.nil? %>
+            </div>
+            <div class="col-md-4 show-information">
+              <i class="fa fa-eye text-primary" aria-hidden="true"></i>
+              <span><%= @publication.page_views %></span>
+            </div>
+            <div class="col-md-4 show-information">
+              <i class="fa fa-usd text-success" aria-hidden="true"></i>
+              <strong><%= @publication.price unless @publication.price.nil? %></strong>
+            </div>
           </div>
-          <div class="col-md-4 show-information">
-            <i class="fa fa-usd text-success" aria-hidden="true"></i>
-            <strong><%= @publication.price unless @publication.price.nil? %></strong>
-          </div>
-        </div>
-        
+        <% end %>
       </div>
       <br><br>
       <div class="row">
