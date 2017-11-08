@@ -24,8 +24,16 @@ class Publication < ApplicationRecord
   #validates :address, presence: {message: "Dirección es requerida"}
 
   # Scopes
-  scope :by_title, -> (search) { where("title ilike ? OR description ilike ?", "%#{search}%", 
-        "%#{search}%")}
+  scope :by_title, -> (search) { where("title ilike ? OR description ilike ?", "%#{search}%", "%#{search}%") }
+  scope :by_type, -> (search) { where(type_id: search) }
+  scope :by_region, -> (search) { where(region_id: search) }
+  scope :by_commune, -> (search) { where(commune_id: search) }
+  scope :by_bedroom_min, -> (value_min) { where("bedroom >= ?", value_min) }
+  scope :by_bedroom_max, -> (value_max) { where("bedroom <= ?", value_max) }
+  scope :by_bath_min, -> (value_min) { where("bath >= ?", value_min) }
+  scope :by_bath_max, -> (value_max) { where("bath <= ?", value_max) }
+  scope :by_parking_min, -> (value_min) { where("parking >= ?", value_min) }
+  scope :by_parking_max, -> (value_max) { where("parking <= ?", value_max) }
 
   def next
     Publication.where(["id > ?", id]).first

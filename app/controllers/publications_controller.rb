@@ -11,56 +11,26 @@ class PublicationsController < ApplicationController
 
     @publications = Publication.all
 
-    #if params[:search_title].present?
-    #  @publications = Publication.where("title ilike ? OR description ilike ?", "%#{params[:search_title]}%", 
-    #    "%#{params[:search_title]}%")
-    # elsif params[:search_type].present? || params[:search_region].present? || params[:search_commune].present?
-    #  @publications = Publication.where(type_id: params[:search_type], region_id: params[:search_region], 
-    #    commune_id: params[:search_commune])
-    #else
-    #  @publications = Publication.all
-    #end
-
-    if params[:search_title].present?
-      @publications = @publications.by_title(params[:search_title])
-    end
-
-    if params[:search_type].present? 
-      @publications = @publications.where(type_id: params[:search_type])
-    end
-
-    if params[:search_region].present?
-       @publications = @publications.where(region_id: params[:search_region])
-    end
-
-    if params[:search_commune].present?
-       @publications = @publications.where(commune_id: params[:search_commune])
-    end
-
-    if params[:bedroom_min].present?
-      @publications = @publications.where("bedroom >= ?", params[:bedroom_min])
-    end
-
-    if params[:bedroom_max].present?
-      @publications = @publications.where("bedroom <= ?", params[:bedroom_max])
-    end
-
-    if params[:bath_min].present?
-      @publications = @publications.where("bath >= ?", params[:bath_min])
-    end
-
-    if params[:bath_max].present?
-      @publications = @publications.where("bath <= ?", params[:bath_max])
-    end
-
-    if params[:parking_min].present?
-      @publications = @publications.where("parking >= ?", params[:parking_min])
-    end
-
-    if params[:parking_max].present?
-      @publications = @publications.where("parking <= ?", params[:parking_max])
-    end
+    @publications = @publications.by_title(params[:search_title]) if params[:search_title].present?
     
+    @publications = @publications.by_type(params[:search_type]) if params[:search_type].present?
+
+    @publications = @publications.by_region(params[:search_region]) if params[:search_region].present?
+
+    @publications = @publications.by_commune(params[:search_commune]) if params[:search_commune].present?
+
+    @publications = @publications.by_bedroom_min(params[:bedroom_min]) if params[:bedroom_min].present?
+
+    @publications = @publications.by_bedroom_max(params[:bedroom_max]) if params[:bedroom_max].present?
+
+    @publications = @publications.by_bath_min(params[:bath_min]) if params[:bath_min].present?
+
+    @publications = @publications.by_bath_max(params[:bath_max]) if params[:bath_max].present?
+
+    @publications = @publications.by_parking_min(params[:parking_min]) if params[:parking_min].present?
+
+    @publications = @publications.by_parking_max(params[:parking_max]) if params[:parking_max].present?
+
   end
 
   # GET /publications/1
