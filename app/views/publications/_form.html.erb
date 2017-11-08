@@ -103,10 +103,10 @@
           $("#publication_category_id").change(function() {
             var valor_categoria = $("#publication_category_id").val();
             console.log(valor_categoria)
-            if (valor_categoria == 7) {
+            if (valor_categoria == 1) {
              $("#precio-pub").html('<label for="price_Precio">Precio Mensual</label><input class="form-control" placeholder="Ej: 500.000" required="required" type="number" name="publication[price]" id="publication_price" aria-required="true">')
             }
-            if (valor_categoria == 8) {
+            if (valor_categoria == 2) {
               $("#precio-pub").html('<label for="price_Precio">Precio Venta</label><input class="form-control" placeholder="Ej: 3000 UF" required="required" type="number" name="publication[price]" id="publication_price" aria-required="true">');
             }
           });
