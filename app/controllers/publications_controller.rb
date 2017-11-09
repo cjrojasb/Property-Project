@@ -8,7 +8,7 @@ class PublicationsController < ApplicationController
   # GET /publications.json       
   def index
 
-    @publications = Publication.all
+    @publications = Publication.all.includes(:region, :commune, :publication_attachments) #Bulllet
 
     @publications = @publications.by_title(params[:search_title]) if params[:search_title].present?
     
@@ -52,6 +52,7 @@ class PublicationsController < ApplicationController
     @publication = Publication.new
     @publication_attachment = @publication.publication_attachments.build
     @categories = Category.all
+    @regions = Region.all.includes(:communes) #Bullet
   end
 
   # GET /publications/1/edit
