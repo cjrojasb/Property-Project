@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     registrations: 'users/registrations' # rails g devise:controllers users
   }
 
+  # CAMbiar rutas
+
   get 'pages/account'
 
   get 'pages/index'
