@@ -6,19 +6,22 @@ Rails.application.routes.draw do
     registrations: 'users/registrations' # rails g devise:controllers users
   }
 
-  # CAMbiar rutas
-
-  get 'pages/account'
-
-  get 'pages/index'
-
   resources :publications do
     member do
       post "contact_email"
     end
   end
-  
-  #resources :pages
+
+  # Routes
+
+  #get 'pages/account'
+  #get 'pages/index'
+
+  resources :pages, only: [:index] do
+    collection do
+      get 'account'
+    end
+  end
 
   root 'pages#index'
 

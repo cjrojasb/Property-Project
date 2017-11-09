@@ -61,7 +61,7 @@ class PublicationsController < ApplicationController
   def access_user
     unless @publication.user == current_user
       flash[:alert] = 'Access denied'
-      redirect_to pages_index_path
+      redirect_to pages_path
     end
   end
 

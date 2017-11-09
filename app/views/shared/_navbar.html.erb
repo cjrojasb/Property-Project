@@ -5,23 +5,23 @@
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
         <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
       </button>
-      <%= link_to (image_tag('go1.png', class: 'img-logo img-responsive')), pages_index_path %>
+      <%= link_to (image_tag('go1.png', class: 'img-logo img-responsive')), pages_path %>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <li>
-          <%= link_to "Inicio", pages_index_path, class: 'page-scroll' %>
+          <%= link_to "Inicio", pages_path, class: 'page-scroll' %>
         </li>
         <li>
-          <a class="page-scroll" href="/pages/index#about">Últimos Avisos</a>
+          <a class="page-scroll" href="/pages/#about">Últimos Avisos</a>
         </li>
         <li>
-          <a class="page-scroll" href="/pages/index#services">Beneficios</a>
+          <a class="page-scroll" href="/pages/#services">Beneficios</a>
         </li>
         <li>
-          <a class="page-scroll" href="/pages/index#contact">Contacto</a>
+          <a class="page-scroll" href="/pages/#contact">Contacto</a>
         </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -34,7 +34,7 @@
             <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <% if user_signed_in? %>
-                <li><a href="<%= pages_account_path %>">Mi Cuenta <i class="fa fa-user" aria-hidden="true"></i></a></li>
+                <li><a href="<%= account_pages_path %>">Mi Cuenta <i class="fa fa-user" aria-hidden="true"></i></a></li>
                 <li><a href="<%= edit_user_registration_path %>">Editar <i class="fa fa-wrench" aria-hidden="true"></i></a></li>
                 <li class="divider"></li>
                 <li><a href="<%= destroy_user_session_path %>" data-method='delete'>Cerrar Sesión <i class="fa fa-power-off" aria-hidden="true"></i></a></li>
