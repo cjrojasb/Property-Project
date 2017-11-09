@@ -11,7 +11,8 @@ Region.destroy_all
 AdminUser.destroy_all
 
 # Active Admin
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+#.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+AdminUser.create!(email: 'admin@goproperty.com', password: 'password', password_confirmation: 'password')
 
 # User Devise
 User.create!(name: 'Carlos Rojas', email: 'carlos.rojas.burgos@gmail.com', phone: 984641677, password: 'carlos', password_confirmation: 'carlos')
