@@ -29,5 +29,27 @@ ActiveAdmin.register_page "Dashboard" do
     #     end
     #   end
     # end
+
+    columns do
+      column do
+        panel "Últimas publicaciones creadas" do
+          ul do
+            Publication.last(5).each do |publication|
+              li link_to(publication.title, admin_publication_path(publication))
+            end
+          end
+        end
+      end
+      column do
+        panel "Listado de Usuarios" do
+          ul do
+            li b "Total Usuarios: #{User.count + AdminUser.count}"
+            li i "Administradores registrados: #{AdminUser.count}"
+            li i "Usuarios Normales: #{User.where(role: "normal").count}"
+            li i "Usuarios Invitados: #{User.where(role: "guest").count}"
+          end
+        end
+      end
+    end
   end # content
 end
