@@ -1,0 +1,15 @@
+<div class="container">
+<h3> Nuestro primer Gráfico </h3>
+  <%= javascript_include_tag "https://www.google.com/jsapi", "chartkick" %>
+
+  <%= pie_chart Category.includes(:publications).group(:name).pluck("categories.name, count('publications')") %>
+
+  <%= pie_chart Type.includes(:publications).group(:type_id,
+"types.name").pluck("types.name, count(publications.type_id)") %>
+
+  <%= pie_chart Type.includes(:publications).group(:name).pluck("types.name, count('publications')") %>
+
+  <%= line_chart Publication.group_by_day(:created_at).count %>
+  
+</div>
+

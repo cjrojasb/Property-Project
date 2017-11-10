@@ -11,6 +11,9 @@ gem 'devise-bootstrap-views'
 # Gem ActiveAdmin
 gem 'activeadmin', github: 'activeadmin'
 gem 'active_skin'
+# Gem Chartkick
+gem 'chartkick'
+gem 'groupdate'
 # Gem CanCanCan
 gem 'cancancan'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

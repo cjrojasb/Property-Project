@@ -13,6 +13,7 @@
 //= require jquery3
 //= require jquery_ujs
 //= require turbolinks
+//= require chartkick
 //= require underscore
 //= require jquery.validate
 //= require jquery.validate.localization/messages_es

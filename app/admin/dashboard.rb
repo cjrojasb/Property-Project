@@ -1,41 +1,42 @@
 ActiveAdmin.register_page "Dashboard" do
 
+  #Charts
+
+  @categories = Category.includes(:publications).group(:name).pluck("categories.name, count('publications')")
+  @publications_by_day = Publication.group_by_day(:created_at).count
+
+
   menu priority: 1, label: proc{ I18n.t("active_admin.dashboard") }
 
   content title: proc{ I18n.t("active_admin.dashboard") } do
     div class: "blank_slate_container", id: "dashboard_default_message" do
-      span class: "blank_slate" do
-        span I18n.t("active_admin.dashboard_welcome.welcome")
-        small I18n.t("active_admin.dashboard_welcome.call_to_action")
+      h1 b "Bienvenido Active Admin"
+      hr
+      br
+    end
+
+    columns do
+      panel "Gráficos" do
+        render 'shared/admin/charts_publications'
       end
     end
 
-    # Here is an example of a simple dashboard with columns and panels.
-    #
-    # columns do
-    #   column do
-    #     panel "Recent Posts" do
-    #       ul do
-    #         Post.recent(5).map do |post|
-    #           li link_to(post.title, admin_post_path(post))
-    #         end
-    #       end
-    #     end
-    #   end
 
-    #   column do
-    #     panel "Info" do
-    #       para "Welcome to ActiveAdmin."
-    #     end
-    #   end
-    # end
+
 
     columns do
       column do
         panel "Últimas publicaciones creadas" do
-          ul do
-            Publication.last(5).each do |publication|
-              li link_to(publication.title, admin_publication_path(publication))
+          columns do
+            column do
+              ul do
+                Publication.last(5).each do |publication|
+                  li link_to(publication.title, admin_publication_path(publication))
+                end
+              end
+            end
+            column do
+              
             end
           end
         end
@@ -49,6 +50,15 @@ ActiveAdmin.register_page "Dashboard" do
             li i "Usuarios Invitados: #{User.where(role: "guest").count}"
           end
         end
+      end
+    end
+    columns do
+      column do
+        panel "Gráficos" do
+          render 'shared/admin/charts'
+        end
+      end
+      column do
       end
     end
   end # content

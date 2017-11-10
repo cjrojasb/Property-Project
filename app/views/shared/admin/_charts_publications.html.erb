@@ -1,0 +1,12 @@
+<div class="container">
+  <%= javascript_include_tag "https://www.google.com/jsapi", "chartkick" %>
+  <h3>Publicaciones por Día</h3>
+
+  <%= line_chart Publication.group_by_day(:created_at).count %>
+
+  <%= pie_chart Publication.order(:pages_views).count %> 
+
+
+
+
+</div>
