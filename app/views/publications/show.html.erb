@@ -8,7 +8,7 @@
 <body>
   <div class="container">
     <section class="show-property">
-      <% if can? :manage, @Publication %>
+      <% if can? :manage, Publication %>
         <%= link_to 'Edit', edit_publication_path(@publication) %> |
         <%= link_to 'Back', publications_path %>
       <% end %>
