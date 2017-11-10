@@ -1,0 +1,9 @@
+<div class="container">
+  <h3>Tipos de Publicaciones</h3>
+
+  <%= javascript_include_tag "https://www.google.com/jsapi", "chartkick" %>
+
+    <%= pie_chart Category.includes(:publications).group(:category_id,
+  "categories.name").pluck("categories.name, count(publications.category_id)") %>
+</div>
+

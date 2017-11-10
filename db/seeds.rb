@@ -15,10 +15,16 @@ AdminUser.destroy_all
 AdminUser.create!(email: 'admin@goproperty.com', password: 'password', password_confirmation: 'password')
 
 # User Devise
+User.create!(name: 'Super Admin', email: 'admin@gmail.com', phone: 978651599, password: 'carlos', password_confirmation: 'carlos', role: "admin")
 User.create!(name: 'Carlos Rojas', email: 'carlos.rojas.burgos@gmail.com', phone: 984641677, password: 'carlos', password_confirmation: 'carlos')
 User.create!(name: 'Alvaro Ponce', email: 'alvaro@gmail.com', phone: 996340141, password: 'alvaro', password_confirmation: 'alvaro')
 User.create!(name: 'Gonzalo Sanchez', email: 'gonzalo@gmail.com', phone: 997487688, password: 'gonzalo', password_confirmation: 'gonzalo')
-User.create!(name: 'Claudia Torres', email: 'clautorresb@hotmail.com', phone: 966641396, password: 'carlosfit', password_confirmation: 'carlosfit')
+User.create!(name: 'Diego Perez', email: 'Diego@gmail.com', phone: 987655210, password: 'carlos', password_confirmation: 'carlos')
+User.create!(name: 'Claudia Torres', email: 'clautorresb@hotmail.com', phone: 966641396, password: 'carlosfit', password_confirmation: 'carlosfit', role: "guest")
+User.create!(name: 'Felipe Cruz', email: 'felipe@gmail.com', phone: 987651599, password: 'felipe', password_confirmation: 'felipe', role: "guest")
+User.create!(name: 'Pablo Torres', email: 'pablo@gmail.com', phone: 987655789, password: 'carlos', password_confirmation: 'carlos', role: "guest")
+
+
 
 # Category
 Category.create([{name: 'Arrendar'}, {name: 'Vender'}])

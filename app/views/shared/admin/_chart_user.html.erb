@@ -1,0 +1,5 @@
+<div class="container">
+  <%= javascript_include_tag "https://www.google.com/jsapi", "chartkick" %>
+  <%= pie_chart User.includes(:publications).group(:role).pluck("users.role, count('publications')") %>
+</div>
+

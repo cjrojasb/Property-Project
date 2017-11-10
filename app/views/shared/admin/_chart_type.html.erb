@@ -1,0 +1,10 @@
+<div class="container">
+<h3>Cantidad de Inmuebles Publicados</h3>
+  <%= javascript_include_tag "https://www.google.com/jsapi", "chartkick" %>
+
+  <%= pie_chart Type.includes(:publications).group(:type_id,
+"types.name").pluck("types.name, count(publications.type_id)") %>
+
+  <%# pie_chart Type.includes(:publications).group(:name).pluck("types.name, count('publications')") %>
+</div>
+

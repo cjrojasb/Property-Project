@@ -21,22 +21,12 @@ ActiveAdmin.register_page "Dashboard" do
       end
     end
 
-
-
-
     columns do
       column do
         panel "Últimas publicaciones creadas" do
-          columns do
-            column do
-              ul do
-                Publication.last(5).each do |publication|
-                  li link_to(publication.title, admin_publication_path(publication))
-                end
-              end
-            end
-            column do
-              
+          ul do
+            Publication.last(5).each do |publication|
+              li link_to(publication.title, admin_publication_path(publication))
             end
           end
         end
@@ -45,20 +35,25 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Listado de Usuarios" do
           ul do
             li b "Total Usuarios: #{User.count + AdminUser.count}"
-            li i "Administradores registrados: #{AdminUser.count}"
+            li i "Super Administradores registrados: #{AdminUser.count}"
+            li i "Usuarios Administradores: #{User.where(role: "admin").count}"
             li i "Usuarios Normales: #{User.where(role: "normal").count}"
             li i "Usuarios Invitados: #{User.where(role: "guest").count}"
+            render 'shared/admin/chart_user'
           end
         end
       end
     end
     columns do
       column do
-        panel "Gráficos" do
-          render 'shared/admin/charts'
+        panel "Gráfico Categorías" do
+          render 'shared/admin/chart_category'
         end
       end
       column do
+        panel "Gráfico Inmuebles" do
+          render 'shared/admin/chart_type'
+        end
       end
     end
   end # content
