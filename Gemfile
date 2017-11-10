@@ -10,6 +10,7 @@ gem "devise", git: 'https://github.com/plataformatec/devise.git'
 gem 'devise-bootstrap-views'
 # Gem ActiveAdmin
 gem 'activeadmin', github: 'activeadmin'
+gem 'active_skin'
 # Gem CanCanCan
 gem 'cancancan'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
